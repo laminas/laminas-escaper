@@ -1,11 +1,11 @@
-# zend-escaper
+# laminas-escaper
 
-[![Build Status](https://secure.travis-ci.org/zendframework/zend-escaper.svg?branch=master)](https://secure.travis-ci.org/zendframework/zend-escaper)
-[![Coverage Status](https://coveralls.io/repos/github/zendframework/zend-escaper/badge.svg?branch=master)](https://coveralls.io/github/zendframework/zend-escaper?branch=master)
+[![Build Status](https://travis-ci.org/laminas/laminas-escaper.svg?branch=master)](https://travis-ci.org/laminas/laminas-escaper)
+[![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-escaper/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-escaper?branch=master)
 
 The OWASP Top 10 web security risks study lists Cross-Site Scripting (XSS) in
 second place. PHP’s sole functionality against XSS is limited to two functions
-of which one is commonly misapplied. Thus, the zend-escaper component was written.
+of which one is commonly misapplied. Thus, the laminas-escaper component was written.
 It offers developers a way to escape output and defend from XSS and related
 vulnerabilities by introducing contextual escaping based on peer-reviewed rules.
 
@@ -14,15 +14,15 @@ vulnerabilities by introducing contextual escaping based on peer-reviewed rules.
 Run the following to install this library:
 
 ```bash
-$ composer require zendframework/zend-escaper
+$ composer require laminas/laminas-escaper
 ```
 
 ## Documentation
 
-Browse the documentation online at https://docs.zendframework.com/zend-escaper/
+Browse the documentation online at https://docs.laminas.dev/laminas-escaper/
 
 ## Support
 
-* [Issues](https://github.com/zendframework/zend-escaper/issues/)
-* [Chat](https://zendframework-slack.herokuapp.com/)
-* [Forum](https://discourse.zendframework.com/)
+* [Issues](https://github.com/laminas/laminas-escaper/issues/)
+* [Chat](https://laminas.dev/chat/)
+* [Forum](https://discourse.laminas.dev/)
