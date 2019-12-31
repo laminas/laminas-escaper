@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-escaper for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-escaper/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-escaper/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Escaper;
+namespace LaminasTest\Escaper;
 
+use Laminas\Escaper\Escaper;
 use PHPUnit\Framework\TestCase;
-use Zend\Escaper\Escaper;
 
 class EscaperTest extends TestCase
 {
@@ -181,8 +180,8 @@ class EscaperTest extends TestCase
     }
 
     /**
-     * @expectedException \Zend\Escaper\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Zend\Escaper\Escaper constructor parameter must be a string, received integer
+     * @expectedException \Laminas\Escaper\Exception\InvalidArgumentException
+     * @expectedExceptionMessage Laminas\Escaper\Escaper constructor parameter must be a string, received integer
      */
     public function testSettingEncodingToNonStringShouldThrowException()
     {
@@ -190,7 +189,7 @@ class EscaperTest extends TestCase
     }
 
     /**
-     * @expectedException \Zend\Escaper\Exception\InvalidArgumentException
+     * @expectedException \Laminas\Escaper\Exception\InvalidArgumentException
      */
     public function testSettingEncodingToEmptyStringShouldThrowException()
     {
@@ -208,7 +207,7 @@ class EscaperTest extends TestCase
 
     public function testSettingEncodingToInvalidValueShouldThrowException()
     {
-        $this->expectException(\Zend\Escaper\Exception\InvalidArgumentException::class);
+        $this->expectException(\Laminas\Escaper\Exception\InvalidArgumentException::class);
         new Escaper('invalid-encoding');
     }
 
