@@ -1,6 +1,6 @@
 # Configuration
 
-`Zend\Escaper\Escaper` has only one configuration option available, and that is
+`Laminas\Escaper\Escaper` has only one configuration option available, and that is
 the encoding to be used by the `Escaper` instance.
 
 The default encoding is **utf-8**. Other supported encodings are:
@@ -17,5 +17,5 @@ The default encoding is **utf-8**. Other supported encodings are:
 - eucjp, eucjp-win
 - macroman
 
-If an unsupported encoding is passed to `Zend\Escaper\Escaper`, a
-`Zend\Escaper\Exception\InvalidArgumentException` will be thrown.
+If an unsupported encoding is passed to `Laminas\Escaper\Escaper`, a
+`Laminas\Escaper\Exception\InvalidArgumentException` will be thrown.

@@ -1,6 +1,6 @@
 # Theory of Operation
 
-zend-escaper provides methods for escaping output data, dependent on the context
+laminas-escaper provides methods for escaping output data, dependent on the context
 in which the data will be used. Each method is based on peer-reviewed rules and
 is in compliance with the current OWASP recommendations.
 
@@ -10,7 +10,7 @@ browser quirks or edge-case HTML parsing unless the browser suffers a
 catastrophic bug in its HTML parser or Javascript interpreter &mdash; both of
 these are unlikely.
 
-The contexts in which zend-escaper should be used are **HTML Body**, **HTML
+The contexts in which laminas-escaper should be used are **HTML Body**, **HTML
 Attribute**, **Javascript**, **CSS**, and **URL/URI** contexts.
 
 Every escaper method will take the data to be escaped, make sure it is utf-8
@@ -24,22 +24,22 @@ us to clearly demonstrate the difference, and how the same characters are being
 escaped differently between contexts:
 
 ```php
-$escaper = new Zend\Escaper\Escaper('utf-8');
+$escaper = new Laminas\Escaper\Escaper('utf-8');
 
-// &lt;script&gt;alert(&quot;zf2&quot;)&lt;/script&gt;
-echo $escaper->escapeHtml('<script>alert("zf2")</script>');
+// &lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;
+echo $escaper->escapeHtml('<script>alert("laminas")</script>');
 
-// &lt;script&gt;alert&#x28;&quot;zf2&quot;&#x29;&lt;&#x2F;script&gt;
-echo $escaper->escapeHtmlAttr('<script>alert("zf2")</script>');
+// &lt;script&gt;alert&#x28;&quot;laminas&quot;&#x29;&lt;&#x2F;script&gt;
+echo $escaper->escapeHtmlAttr('<script>alert("laminas")</script>');
 
-// \x3Cscript\x3Ealert\x28\x22zf2\x22\x29\x3C\x2Fscript\x3E
-echo $escaper->escapeJs('<script>alert("zf2")</script>');
+// \x3Cscript\x3Ealert\x28\x22laminas\x22\x29\x3C\x2Fscript\x3E
+echo $escaper->escapeJs('<script>alert("laminas")</script>');
 
-// \3C script\3E alert\28 \22 zf2\22 \29 \3C \2F script\3E 
-echo $escaper->escapeCss('<script>alert("zf2")</script>');
+// \3C script\3E alert\28 \22 laminas\22 \29 \3C \2F script\3E 
+echo $escaper->escapeCss('<script>alert("laminas")</script>');
 
-// %3Cscript%3Ealert%28%22zf2%22%29%3C%2Fscript%3E
-echo $escaper->escapeUrl('<script>alert("zf2")</script>');
+// %3Cscript%3Ealert%28%22laminas%22%29%3C%2Fscript%3E
+echo $escaper->escapeUrl('<script>alert("laminas")</script>');
 ```
 
 More detailed examples will be given in later chapters.
@@ -80,7 +80,7 @@ encoding awareness, and misrepresentations of what functions are capable of by
 some programmers &mdash; these all make escaping in PHP an unnecessarily
 convoluted quest.
 
-To circumvent the lack of escaping methods in PHP, zend-escaper addresses the
+To circumvent the lack of escaping methods in PHP, laminas-escaper addresses the
 need to apply context-specific escaping in web applications. It implements
 methods that specifically target XSS and offers programmers a tool to secure
 their applications without misusing other inadequate methods, or using, most
