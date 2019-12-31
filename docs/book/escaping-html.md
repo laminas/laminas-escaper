@@ -6,14 +6,14 @@ to escape data incorrectly, namely by setting the wrong flags and character
 encoding.
 
 For escaping data to use within an HTML body context, use
-`Zend\Escaper\Escaper`'s `escapeHtml()` method.  Internally it uses PHP's
+`Laminas\Escaper\Escaper`'s `escapeHtml()` method.  Internally it uses PHP's
 `htmlspecialchars()`, correctly setting the flags and encoding for you.
 
 ```php
 // Outputting this without escaping would be a bad idea!
-$input = '<script>alert("zf2")</script>';
+$input = '<script>alert("laminas")</script>';
 
-$escaper = new Zend\Escaper\Escaper('utf-8');
+$escaper = new Laminas\Escaper\Escaper('utf-8');
 
 // somewhere in an HTML template
 <div class="user-provided-input">
@@ -31,8 +31,8 @@ An example of incorrect usage:
 
 ```php
 <?php
-$input = '<script>alert("zf2")</script>';
-$escaper = new Zend\Escaper\Escaper('utf-8');
+$input = '<script>alert("laminas")</script>';
+$escaper = new Laminas\Escaper\Escaper('utf-8');
 ?>
 <?php header('Content-Type: text/html; charset=ISO-8859-1'); ?>
 <!DOCTYPE html>
@@ -55,8 +55,8 @@ An example of correct usage:
 
 ```php
 <?php
-$input = '<script>alert("zf2")</script>';
-$escaper = new Zend\Escaper\Escaper('utf-8');
+$input = '<script>alert("laminas")</script>';
+$escaper = new Laminas\Escaper\Escaper('utf-8');
 ?>
 <?php header('Content-Type: text/html; charset=UTF-8'); ?>
 <!DOCTYPE html>

@@ -10,24 +10,17 @@ env:
     - COVERAGE_DEPS="php-coveralls/php-coveralls"
 
 matrix:
+  fast_finish: true
   include:
     - php: 5.6
       env:
         - DEPS=lowest
     - php: 5.6
       env:
-        - DEPS=locked
-        - LEGACY_DEPS="phpunit/phpunit"
-    - php: 5.6
-      env:
         - DEPS=latest
     - php: 7
       env:
         - DEPS=lowest
-    - php: 7
-      env:
-        - DEPS=locked
-        - LEGACY_DEPS="phpunit/phpunit"
     - php: 7
       env:
         - DEPS=latest
@@ -36,27 +29,18 @@ matrix:
         - DEPS=lowest
     - php: 7.1
       env:
-        - DEPS=locked
+        - DEPS=latest
         - CS_CHECK=true
         - TEST_COVERAGE=true
-    - php: 7.1
-      env:
-        - DEPS=latest
     - php: 7.2
       env:
         - DEPS=lowest
-    - php: 7.2
-      env:
-        - DEPS=locked
     - php: 7.2
       env:
         - DEPS=latest
     - php: 7.3
       env:
         - DEPS=lowest
-    - php: 7.3
-      env:
-        - DEPS=locked
     - php: 7.3
       env:
         - DEPS=latest
