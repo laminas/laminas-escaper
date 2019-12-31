@@ -7,7 +7,7 @@ the attribute value can be **guaranteed as being properly quoted**! To avoid
 confusion, we recommend always using the HTML Attribute escaper method when
 dealing with HTTP attributes specifically.
 
-To escape data for an HTML Attribute, use `Zend\Escaper\Escaper`'s
+To escape data for an HTML Attribute, use `Laminas\Escaper\Escaper`'s
 `escapeHtmlAttr()` method.  Internally it will convert the data to UTF-8, check
 for its validity, and use an extended set of characters to escape that are not
 covered by `htmlspecialchars()` to cover the cases where an attribute might be
@@ -22,7 +22,7 @@ An example of incorrect HTML attribute escaping:
 <!DOCTYPE html>
 <?php
 $input = <<<INPUT
-' onmouseover='alert(/ZF2!/);
+' onmouseover='alert(/Laminas!/);
 INPUT;
 
 /**
@@ -39,7 +39,7 @@ $output = htmlspecialchars($input);
     <div>
         <?php
         // the span tag will look like:
-        // <span title='' onmouseover='alert(/ZF2!/);'>
+        // <span title='' onmouseover='alert(/Laminas!/);'>
         ?>
         <span title='<?= $output ?>'>
             What framework are you using?
@@ -61,7 +61,7 @@ attributes are used (which is, by the way, perfectly valid HTML5):
 <!DOCTYPE html>
 <?php
 $input = <<<INPUT
-faketitle onmouseover=alert(/ZF2!/);
+faketitle onmouseover=alert(/Laminas!/);
 INPUT;
 
 // Tough luck using proper flags when the title attribute is unquoted!
@@ -76,7 +76,7 @@ $output = htmlspecialchars($input, ENT_QUOTES);
     <div>
         <?php
         // the span tag will look like:
-        // <span title=faketitle onmouseover=alert(/ZF2!/);>
+        // <span title=faketitle onmouseover=alert(/Laminas!/);>
         ?>
         <span title=<?= $output ?>>
             What framework are you using?
@@ -99,10 +99,10 @@ Both of the previous examples can be avoided by simply using the
 <!DOCTYPE html>
 <?php
 $input = <<<INPUT
-faketitle onmouseover=alert(/ZF2!/);
+faketitle onmouseover=alert(/Laminas!/);
 INPUT;
 
-$escaper = new Zend\Escaper\Escaper('utf-8');
+$escaper = new Laminas\Escaper\Escaper('utf-8');
 $output = $escaper->escapeHtmlAttr($input);
 ?>
 <html>
@@ -114,7 +114,7 @@ $output = $escaper->escapeHtmlAttr($input);
     <div>
         <?php
         // the span tag will look like:
-        // <span title=faketitle&#x20;onmouseover&#x3D;alert&#x28;&#x2F;ZF2&#x21;&#x2F;&#x29;&#x3B;>
+        // <span title=faketitle&#x20;onmouseover&#x3D;alert&#x28;&#x2F;Laminas&#x21;&#x2F;&#x29;&#x3B;>
         ?>
         <span title=<?= $output ?>>
             What framework are you using?

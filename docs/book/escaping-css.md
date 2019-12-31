@@ -49,7 +49,7 @@ body {
 }
 INPUT;
 
-$escaper = new Zend\Escaper\Escaper('utf-8');
+$escaper = new Laminas\Escaper\Escaper('utf-8');
 $output = $escaper->escapeCss($input);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">

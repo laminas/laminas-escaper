@@ -12,7 +12,7 @@ and underscore characters as hexadecimal or unicode escapes.
 Javascript escaping applies to all literal strings and digits. It is not
 possible to safely escape other Javascript markup.
 
-To escape data in the **Javascript context**, use `Zend\Escaper\Escaper`'s
+To escape data in the **Javascript context**, use `Laminas\Escaper\Escaper`'s
 `escapeJs()` method. An extended set of characters are escaped beyond
 ECMAScript's rules for Javascript literal string escaping in order to prevent
 misinterpretation of Javascript as HTML leading to the injection of special
@@ -66,7 +66,7 @@ $input = <<<INPUT
 bar&quot;; alert(&quot;Meow!&quot;); var xss=&quot;true
 INPUT;
 
-$escaper = new Zend\Escaper\Escaper('utf-8');
+$escaper = new Laminas\Escaper\Escaper('utf-8');
 $output = $escaper->escapeJs($input);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -83,7 +83,7 @@ bar\x26quot\x3B\x3B\x20alert\x28\x26quot\x3BMeow\x21\x26quot\x3B\x29\x3B\x20var\
     </script>
 </head>
 <body>
-    <p>Zend\Escaper\Escaper::escapeJs() is good for escaping javascript!</p>
+    <p>Laminas\Escaper\Escaper::escapeJs() is good for escaping javascript!</p>
 </body>
 </html>
 ```

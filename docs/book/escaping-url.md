@@ -15,7 +15,7 @@ XSS attacks are easy if data inserted into URLs is not escaped properly:
 <!DOCTYPE html>
 <?php
 $input = <<<INPUT
-" onmouseover="alert('zf2')
+" onmouseover="alert('laminas')
 INPUT;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,10 +39,10 @@ attacks:
 <!DOCTYPE html>
 <?php
 $input = <<<INPUT
-" onmouseover="alert('zf2')
+" onmouseover="alert('laminas')
 INPUT;
 
-$escaper = new Zend\Escaper\Escaper('utf-8');
+$escaper = new Laminas\Escaper\Escaper('utf-8');
 $output = $escaper->escapeUrl($input);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">

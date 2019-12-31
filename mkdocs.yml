@@ -1,6 +1,6 @@
 docs_dir: docs/book
 site_dir: docs/html
-pages:
+nav:
     - Home: index.md
     - Introduction: intro.md
     - Reference:
@@ -11,6 +11,6 @@ pages:
         - "Escaping Javascript": escaping-javascript.md
         - "Escaping CSS": escaping-css.md
         - "Escaping URLs": escaping-url.md
-site_name: zend-escaper
+site_name: laminas-escaper
 site_description: 'Securely and safely escape HTML, HTML attributes, JavaScript, CSS, and URLs'
-repo_url: 'https://github.com/zendframework/zend-escaper'
+repo_url: 'https://github.com/laminas/laminas-escaper'

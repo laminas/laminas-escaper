@@ -28,7 +28,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#32](https://github.com/zendframework/zend-escaper/pull/32) adds support for PHP 7.3.
+- [zendframework/zend-escaper#32](https://github.com/zendframework/zend-escaper/pull/32) adds support for PHP 7.3.
 
 ### Changed
 
@@ -50,11 +50,11 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#28](https://github.com/zendframework/zend-escaper/pull/28) adds support for PHP 7.1 and 7.2.
+- [zendframework/zend-escaper#28](https://github.com/zendframework/zend-escaper/pull/28) adds support for PHP 7.1 and 7.2.
 
 ### Changed
 
-- [#25](https://github.com/zendframework/zend-escaper/pull/25) changes the behavior of the `Escaper` constructor; it now raises an
+- [zendframework/zend-escaper#25](https://github.com/zendframework/zend-escaper/pull/25) changes the behavior of the `Escaper` constructor; it now raises an
   exception for non-null, non-string `$encoding` arguments.
 
 ### Deprecated
@@ -63,9 +63,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#28](https://github.com/zendframework/zend-escaper/pull/28) removes support for PHP 5.5.
+- [zendframework/zend-escaper#28](https://github.com/zendframework/zend-escaper/pull/28) removes support for PHP 5.5.
 
-- [#28](https://github.com/zendframework/zend-escaper/pull/28) removes support for HHVM.
+- [zendframework/zend-escaper#28](https://github.com/zendframework/zend-escaper/pull/28) removes support for HHVM.
 
 ### Fixed
 
@@ -75,10 +75,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#11](https://github.com/zendframework/zend-escaper/pull/11),
-  [#12](https://github.com/zendframework/zend-escaper/pull/12), and
-  [#13](https://github.com/zendframework/zend-escaper/pull/13) prepare and
-  publish documentation to https://zendframework.github.io/zend-escaper/
+- [zendframework/zend-escaper#11](https://github.com/zendframework/zend-escaper/pull/11),
+  [zendframework/zend-escaper#12](https://github.com/zendframework/zend-escaper/pull/12), and
+  [zendframework/zend-escaper#13](https://github.com/zendframework/zend-escaper/pull/13) prepare and
+  publish documentation to https://docs.laminas.dev/laminas-escaper/
 
 ### Deprecated
 
@@ -90,6 +90,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#3](https://github.com/zendframework/zend-escaper/pull/3) updates the
+- [zendframework/zend-escaper#3](https://github.com/zendframework/zend-escaper/pull/3) updates the
   the escaping mechanism to add support for escaping characters outside the Basic
   Multilingual Plane when escaping for JS, CSS, or HTML attributes.
