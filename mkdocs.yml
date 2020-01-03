@@ -14,3 +14,6 @@ nav:
 site_name: laminas-escaper
 site_description: 'Securely and safely escape HTML, HTML attributes, JavaScript, CSS, and URLs'
 repo_url: 'https://github.com/laminas/laminas-escaper'
+extra:
+    project: Components
+    project_url: 'https://docs.laminas.dev'
