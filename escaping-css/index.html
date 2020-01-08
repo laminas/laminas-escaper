@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -256,61 +260,59 @@ excludes only basic alphanumeric characters and escapes all other characters
 into valid CSS hexadecimal escapes.</p>
 <h2 id="example-of-bad-css-escaping">Example of Bad CSS Escaping</h2>
 <p>In most cases developers forget to escape CSS completely:</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span> <span class=nb>header</span><span class=p>(</span><span class=s1>&#39;Content-Type: application/xhtml+xml; charset=UTF-8&#39;</span><span class=p>);</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;!DOCTYPE html&gt;</span>
-<span class=cp>&lt;?php</span>
-<span class=nv>$input</span> <span class=o>=</span> <span class=s>&lt;&lt;&lt;</span><span class=dl>INPUT</span><span class=s></span>
-<span class=s>body {</span>
-<span class=s>    background-image: url(&#39;http://example.com/foo.jpg?&lt;/style&gt;&lt;script&gt;alert(1)&lt;/script&gt;&#39;);</span>
-<span class=s>}</span>
-<span class=dl>INPUT</span><span class=p>;</span>
-<span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span>
-<span class=x>&lt;head&gt;</span>
-<span class=x>    &lt;title&gt;Unescaped CSS&lt;/title&gt;</span>
-<span class=x>    &lt;meta charset=&quot;UTF-8&quot;/&gt;</span>
-<span class=x>    &lt;style&gt;</span>
-<span class=x>    </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$input</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>    &lt;/style&gt;</span>
-<span class=x>&lt;/head&gt;</span>
-<span class=x>&lt;body&gt;</span>
-<span class=x>    &lt;p&gt;User controlled CSS needs to be properly escaped!&lt;/p&gt;</span>
-<span class=x>&lt;/body&gt;</span>
-<span class=x>&lt;/html&gt;</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>&lt;?php header('Content-Type: application/xhtml+xml; charset=UTF-8'); ?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;?php
+$input = &lt;&lt;&lt;INPUT
+body {
+    background-image: url('http://example.com/foo.jpg?&lt;/style&gt;&lt;script&gt;alert(1)&lt;/script&gt;');
+}
+INPUT;
+?&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;Unescaped CSS&lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;/&gt;
+    &lt;style&gt;
+    &lt;?= $input ?&gt;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;User controlled CSS needs to be properly escaped!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>In the above example, by failing to escape the user provided CSS, an attacker
 can execute an XSS attack fairly easily.</p>
 <h2 id="example-of-good-css-escaping">Example of Good CSS Escaping</h2>
 <p>By using <code>escapeCss()</code> method in the CSS context, such attacks can be prevented:</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span> <span class=nb>header</span><span class=p>(</span><span class=s1>&#39;Content-Type: application/xhtml+xml; charset=UTF-8&#39;</span><span class=p>);</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;!DOCTYPE html&gt;</span>
-<span class=cp>&lt;?php</span>
-<span class=nv>$input</span> <span class=o>=</span> <span class=s>&lt;&lt;&lt;</span><span class=dl>INPUT</span><span class=s></span>
-<span class=s>body {</span>
-<span class=s>    background-image: url(&#39;http://example.com/foo.jpg?&lt;/style&gt;&lt;script&gt;alert(1)&lt;/script&gt;&#39;);</span>
-<span class=s>}</span>
-<span class=dl>INPUT</span><span class=p>;</span>
+<pre class=codehilite><code class=language-php>&lt;?php header('Content-Type: application/xhtml+xml; charset=UTF-8'); ?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;?php
+$input = &lt;&lt;&lt;INPUT
+body {
+    background-image: url('http://example.com/foo.jpg?&lt;/style&gt;&lt;script&gt;alert(1)&lt;/script&gt;');
+}
+INPUT;
 
-<span class=nv>$escaper</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Laminas\Escaper\Escaper</span><span class=p>(</span><span class=s1>&#39;utf-8&#39;</span><span class=p>);</span>
-<span class=nv>$output</span> <span class=o>=</span> <span class=nv>$escaper</span><span class=o>-&gt;</span><span class=na>escapeCss</span><span class=p>(</span><span class=nv>$input</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span>
-<span class=x>&lt;head&gt;</span>
-<span class=x>    &lt;title&gt;Escaped CSS&lt;/title&gt;</span>
-<span class=x>    &lt;meta charset=&quot;UTF-8&quot;/&gt;</span>
-<span class=x>    &lt;style&gt;</span>
-<span class=x>    </span><span class=cp>&lt;?php</span>
-    <span class=c1>// output will look something like</span>
-    <span class=c1>// body\20 \7B \A \20 \20 \20 \20 background\2D image\3A \20 url\28 ...</span>
-    <span class=k>echo</span> <span class=nv>$output</span><span class=p>;</span>
-    <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>    &lt;/style&gt;</span>
-<span class=x>&lt;/head&gt;</span>
-<span class=x>&lt;body&gt;</span>
-<span class=x>    &lt;p&gt;User controlled CSS needs to be properly escaped!&lt;/p&gt;</span>
-<span class=x>&lt;/body&gt;</span>
-<span class=x>&lt;/html&gt;</span>
-</pre></div></p>
+$escaper = new Laminas\Escaper\Escaper('utf-8');
+$output = $escaper-&gt;escapeCss($input);
+?&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;Escaped CSS&lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;/&gt;
+    &lt;style&gt;
+    &lt;?php
+    // output will look something like
+    // body\20 \7B \A \20 \20 \20 \20 background\2D image\3A \20 url\28 ...
+    echo $output;
+    ?&gt;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;User controlled CSS needs to be properly escaped!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>By properly escaping user controlled CSS, we can prevent XSS attacks in our web
 applications.</p>
 
@@ -470,9 +472,10 @@ applications.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -509,7 +512,7 @@ applications.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-escaper//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-escaper/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -518,8 +521,8 @@ applications.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-escaper//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-escaper/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -269,23 +273,22 @@ the caller.</p>
 own set of rules according to which escaping is performed. An example will allow
 us to clearly demonstrate the difference, and how the same characters are being
 escaped differently between contexts:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$escaper = new Laminas\Escaper\Escaper(&#39;utf-8&#39;);</span>
+<pre class=codehilite><code class=language-php>$escaper = new Laminas\Escaper\Escaper('utf-8');
 
-<span class=x>// &amp;lt;script&amp;gt;alert(&amp;quot;laminas&amp;quot;)&amp;lt;/script&amp;gt;</span>
-<span class=x>echo $escaper-&gt;escapeHtml(&#39;&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;&#39;);</span>
+// &amp;lt;script&amp;gt;alert(&amp;quot;laminas&amp;quot;)&amp;lt;/script&amp;gt;
+echo $escaper-&gt;escapeHtml('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');
 
-<span class=x>// &amp;lt;script&amp;gt;alert&amp;#x28;&amp;quot;laminas&amp;quot;&amp;#x29;&amp;lt;&amp;#x2F;script&amp;gt;</span>
-<span class=x>echo $escaper-&gt;escapeHtmlAttr(&#39;&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;&#39;);</span>
+// &amp;lt;script&amp;gt;alert&amp;#x28;&amp;quot;laminas&amp;quot;&amp;#x29;&amp;lt;&amp;#x2F;script&amp;gt;
+echo $escaper-&gt;escapeHtmlAttr('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');
 
-<span class=x>// \x3Cscript\x3Ealert\x28\x22laminas\x22\x29\x3C\x2Fscript\x3E</span>
-<span class=x>echo $escaper-&gt;escapeJs(&#39;&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;&#39;);</span>
+// \x3Cscript\x3Ealert\x28\x22laminas\x22\x29\x3C\x2Fscript\x3E
+echo $escaper-&gt;escapeJs('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');
 
-<span class=x>// \3C script\3E alert\28 \22 laminas\22 \29 \3C \2F script\3E</span>
-<span class=x>echo $escaper-&gt;escapeCss(&#39;&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;&#39;);</span>
+// \3C script\3E alert\28 \22 laminas\22 \29 \3C \2F script\3E
+echo $escaper-&gt;escapeCss('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');
 
-<span class=x>// %3Cscript%3Ealert%28%22laminas%22%29%3C%2Fscript%3E</span>
-<span class=x>echo $escaper-&gt;escapeUrl(&#39;&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;&#39;);</span>
-</pre></div></p>
+// %3Cscript%3Ealert%28%22laminas%22%29%3C%2Fscript%3E
+echo $escaper-&gt;escapeUrl('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');</code></pre>
 <p>More detailed examples will be given in later chapters.</p>
 <h2 id="the-problem-with-inconsistent-functionality">The Problem with Inconsistent Functionality</h2>
 <p>At present, programmers orient towards the following PHP functions for each
@@ -530,9 +533,10 @@ a singular reliance on it a questionable practice.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -569,7 +573,7 @@ a singular reliance on it a questionable practice.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-escaper//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-escaper/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -578,8 +582,8 @@ a singular reliance on it a questionable practice.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-escaper//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-escaper/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

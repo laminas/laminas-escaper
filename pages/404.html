@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Securely and safely escape HTML, HTML attributes, JavaScript, CSS, and URLs">  
-    <link rel="canonical" href="https://docs.laminas.dev/escaping-url/">
     <link rel="shortcut icon" href="/img/trademark-laminas-foundation-rgb.svg">
 
-    <title>Escaping URLs - laminas-escaper - Laminas Docs</title>
+    <title>laminas-escaper - Laminas Docs</title>
 
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -59,7 +58,7 @@
                     
     <div class="subnavigation hidden-print">
         <h4 class="subnavigation__title">
-            <a href="..">laminas-escaper</a>
+            <a href="../.">laminas-escaper</a>
         </h4>
 
         <h5 class="subnavigation__subtitle">Table of Contents</h5>
@@ -128,8 +127,8 @@
 
                                     
                                         
-    <li class="subnavigation__list-item subnavigation__list-item--active">
-        <a href="./" class="subnavigation__link">Escaping URLs</a>
+    <li class="subnavigation__list-item ">
+        <a href="../escaping-url/" class="subnavigation__link">Escaping URLs</a>
     </li>
 
                                     
@@ -198,143 +197,21 @@
         <div class="row">
             <div class="col-md-2 col-sm-12">
                 
-    
-
-    
-    
-        <div class="toc">
-            <h6 class="toc__headline">On this page</h6>
-            <ul class="toc__list">
-                
-                    <li class="toc__entry">
-                        <a href="#example-of-bad-url-escaping" class="toc__link">Example of Bad URL Escaping</a>
-                    </li>
-                
-                    <li class="toc__entry">
-                        <a href="#example-of-good-url-escaping" class="toc__link">Example of Good URL Escaping</a>
-                    </li>
-                
-            </ul>
-        </div>
-    
-
             </div>
             <div class="col-md-7 col-sm-12 content" role="main" data-spy="scroll" data-target=".toc">
                 
-                    <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        
-            <li class="breadcrumb-item"><a href="">Overview</a></li>
 
-            
-                <li class="breadcrumb-item"><a href="..">laminas-escaper</a></li>
+<h1 class="content__title">404</h1>
+<blockquote>
+    <h3>Something went wrong!</h3>
+    <p>
+        We're sorry, but the page you are looking for does not exist.
+    </p>
+</blockquote>
 
-                
-                    
-                        
-                        
-                            <li class="breadcrumb-item">Reference</li>
-                        
-                    
-                
-
-                <li class="breadcrumb-item active" aria-current="page">Escaping URLs</li>
-            
-        
-    </ol>
-</nav>
+<a href="../." class="btn btn-default" role="button">Go to homepage</a>
 
 
-
-
-
-
-    
-    
-        <h2 class="chapter__headline">Reference</h2>
-    
-
-    <h1 id="escaping-urls">Escaping URLs</h1>
-<p>This method is basically an alias for PHP's <code>rawurlencode()</code> which has applied
-RFC 3986 since PHP 5.3. It is included primarily for consistency.</p>
-<p>URL escaping applies to data being inserted into a URL and not to the whole URL
-itself.</p>
-<h2 id="example-of-bad-url-escaping">Example of Bad URL Escaping</h2>
-<p>XSS attacks are easy if data inserted into URLs is not escaped properly:</p>
-<pre class=codehilite><code class=language-php>&lt;?php header('Content-Type: application/xhtml+xml; charset=UTF-8'); ?&gt;
-&lt;!DOCTYPE html&gt;
-&lt;?php
-$input = &lt;&lt;&lt;INPUT
-&quot; onmouseover=&quot;alert('laminas')
-INPUT;
-?&gt;
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-&lt;head&gt;
-    &lt;title&gt;Unescaped URL data&lt;/title&gt;
-    &lt;meta charset=&quot;UTF-8&quot;/&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;a href=&quot;http://example.com/?name=&lt;?= $input ?&gt;&quot;&gt;Click here!&lt;/a&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<h2 id="example-of-good-url-escaping">Example of Good URL Escaping</h2>
-<p>By properly escaping data in URLs by using <code>escapeUrl()</code>, we can prevent XSS
-attacks:</p>
-<pre class=codehilite><code class=language-php>&lt;?php header('Content-Type: application/xhtml+xml; charset=UTF-8'); ?&gt;
-&lt;!DOCTYPE html&gt;
-&lt;?php
-$input = &lt;&lt;&lt;INPUT
-&quot; onmouseover=&quot;alert('laminas')
-INPUT;
-
-$escaper = new Laminas\Escaper\Escaper('utf-8');
-$output = $escaper-&gt;escapeUrl($input);
-?&gt;
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-&lt;head&gt;
-    &lt;title&gt;Unescaped URL data&lt;/title&gt;
-    &lt;meta charset=&quot;UTF-8&quot;/&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;a href=&quot;http://example.com/?name=&lt;?= $output ?&gt;&quot;&gt;Click here!&lt;/a&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-
-
-
-    <nav>
-    <ul class="page-nav hidden-print">
-
-        
-        <li class="page-nav__item">
-            
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../escaping-css/">
-                    <i class="fa fa-chevron-left"></i> Previous
-                </a>
-            
-        </li>
-
-        
-        <li class="page-nav__item">
-            
-        </li>
-    </ul>
-</nav>
-
-
-
-
-    <div class="help-wanted">
-        <p>
-            Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/laminas/laminas-escaper/edit/master/docs/book/escaping-url.md" target="_blank" class="help-wanted__link">
-                Edit this page on GitHub!
-            </a>
-        </p>
-    </div>
-
-                
             </div>
             <div class="col-md-3 col-sm-12 sidebar">
                 
@@ -349,7 +226,7 @@ $output = $escaper-&gt;escapeUrl($input);
                     
     <div class="subnavigation hidden-print">
         <h4 class="subnavigation__title">
-            <a href="..">laminas-escaper</a>
+            <a href="../.">laminas-escaper</a>
         </h4>
 
         <h5 class="subnavigation__subtitle">Table of Contents</h5>
@@ -418,8 +295,8 @@ $output = $escaper-&gt;escapeUrl($input);
 
                                     
                                         
-    <li class="subnavigation__list-item subnavigation__list-item--active">
-        <a href="./" class="subnavigation__link">Escaping URLs</a>
+    <li class="subnavigation__list-item ">
+        <a href="../escaping-url/" class="subnavigation__link">Escaping URLs</a>
     </li>
 
                                     

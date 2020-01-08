@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -264,102 +268,99 @@ covered by <code>htmlspecialchars()</code> to cover the cases where an attribute
 unquoted or quoted illegally.</p>
 <h2 id="examples-of-bad-html-attribute-escaping">Examples of Bad HTML Attribute Escaping</h2>
 <p>An example of incorrect HTML attribute escaping:</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span> <span class=nb>header</span><span class=p>(</span><span class=s1>&#39;Content-Type: text/html; charset=UTF-8&#39;</span><span class=p>);</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;!DOCTYPE html&gt;</span>
-<span class=cp>&lt;?php</span>
-<span class=nv>$input</span> <span class=o>=</span> <span class=s>&lt;&lt;&lt;</span><span class=dl>INPUT</span><span class=s></span>
-<span class=s>&#39; onmouseover=&#39;alert(/Laminas!/);</span>
-<span class=dl>INPUT</span><span class=p>;</span>
+<pre class=codehilite><code class=language-php>&lt;?php header('Content-Type: text/html; charset=UTF-8'); ?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;?php
+$input = &lt;&lt;&lt;INPUT
+' onmouseover='alert(/Laminas!/);
+INPUT;
 
-<span class=sd>/**</span>
-<span class=sd> * NOTE: This is equivalent to using htmlspecialchars($input, ENT_COMPAT)</span>
-<span class=sd> */</span>
-<span class=nv>$output</span> <span class=o>=</span> <span class=nb>htmlspecialchars</span><span class=p>(</span><span class=nv>$input</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;html&gt;</span>
-<span class=x>&lt;head&gt;</span>
-<span class=x>    &lt;title&gt;Single Quoted Attribute&lt;/title&gt;</span>
-<span class=x>    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span>
-<span class=x>&lt;/head&gt;</span>
-<span class=x>&lt;body&gt;</span>
-<span class=x>    &lt;div&gt;</span>
-<span class=x>        </span><span class=cp>&lt;?php</span>
-        <span class=c1>// the span tag will look like:</span>
-        <span class=c1>// &lt;span title=&#39;&#39; onmouseover=&#39;alert(/Laminas!/);&#39;&gt;</span>
-        <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>        &lt;span title=&#39;</span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$output</span> <span class=cp>?&gt;</span><span class=x>&#39;&gt;</span>
-<span class=x>            What framework are you using?</span>
-<span class=x>        &lt;/span&gt;</span>
-<span class=x>    &lt;/div&gt;</span>
-<span class=x>&lt;/body&gt;</span>
-<span class=x>&lt;/html&gt;</span>
-</pre></div></p>
+/**
+ * NOTE: This is equivalent to using htmlspecialchars($input, ENT_COMPAT)
+ */
+$output = htmlspecialchars($input);
+?&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Single Quoted Attribute&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;?php
+        // the span tag will look like:
+        // &lt;span title='' onmouseover='alert(/Laminas!/);'&gt;
+        ?&gt;
+        &lt;span title='&lt;?= $output ?&gt;'&gt;
+            What framework are you using?
+        &lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>In the above example, the default <code>ENT_COMPAT</code> flag is being used, which does
 not escape single quotes, thus resulting in an alert box popping up when the
 <code>onmouseover</code> event happens on the <code>span</code> element.</p>
 <p>Another example of incorrect HTML attribute escaping can happen when unquoted
 attributes are used (which is, by the way, perfectly valid HTML5):</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span> <span class=nb>header</span><span class=p>(</span><span class=s1>&#39;Content-Type: text/html; charset=UTF-8&#39;</span><span class=p>);</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;!DOCTYPE html&gt;</span>
-<span class=cp>&lt;?php</span>
-<span class=nv>$input</span> <span class=o>=</span> <span class=s>&lt;&lt;&lt;</span><span class=dl>INPUT</span><span class=s></span>
-<span class=s>faketitle onmouseover=alert(/Laminas!/);</span>
-<span class=dl>INPUT</span><span class=p>;</span>
+<pre class=codehilite><code class=language-php>&lt;?php header('Content-Type: text/html; charset=UTF-8'); ?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;?php
+$input = &lt;&lt;&lt;INPUT
+faketitle onmouseover=alert(/Laminas!/);
+INPUT;
 
-<span class=c1>// Tough luck using proper flags when the title attribute is unquoted!</span>
-<span class=nv>$output</span> <span class=o>=</span> <span class=nb>htmlspecialchars</span><span class=p>(</span><span class=nv>$input</span><span class=p>,</span> <span class=nx>ENT_QUOTES</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;html&gt;</span>
-<span class=x>&lt;head&gt;</span>
-<span class=x>    &lt;title&gt;Quoteless Attribute&lt;/title&gt;</span>
-<span class=x>    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span>
-<span class=x>&lt;/head&gt;</span>
-<span class=x>&lt;body&gt;</span>
-<span class=x>    &lt;div&gt;</span>
-<span class=x>        </span><span class=cp>&lt;?php</span>
-        <span class=c1>// the span tag will look like:</span>
-        <span class=c1>// &lt;span title=faketitle onmouseover=alert(/Laminas!/);&gt;</span>
-        <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>        &lt;span title=</span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$output</span> <span class=cp>?&gt;</span><span class=x>&gt;</span>
-<span class=x>            What framework are you using?</span>
-<span class=x>        &lt;/span&gt;</span>
-<span class=x>    &lt;/div&gt;</span>
-<span class=x>&lt;/body&gt;</span>
-<span class=x>&lt;/html&gt;</span>
-</pre></div></p>
+// Tough luck using proper flags when the title attribute is unquoted!
+$output = htmlspecialchars($input, ENT_QUOTES);
+?&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Quoteless Attribute&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;?php
+        // the span tag will look like:
+        // &lt;span title=faketitle onmouseover=alert(/Laminas!/);&gt;
+        ?&gt;
+        &lt;span title=&lt;?= $output ?&gt;&gt;
+            What framework are you using?
+        &lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>The above example shows how it is easy to break out from unquoted attributes in
 HTML5.</p>
 <h2 id="example-of-good-html-attribute-escaping">Example of Good HTML Attribute Escaping</h2>
 <p>Both of the previous examples can be avoided by simply using the
 <code>escapeHtmlAttr()</code> method:</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span> <span class=nb>header</span><span class=p>(</span><span class=s1>&#39;Content-Type: text/html; charset=UTF-8&#39;</span><span class=p>);</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;!DOCTYPE html&gt;</span>
-<span class=cp>&lt;?php</span>
-<span class=nv>$input</span> <span class=o>=</span> <span class=s>&lt;&lt;&lt;</span><span class=dl>INPUT</span><span class=s></span>
-<span class=s>faketitle onmouseover=alert(/Laminas!/);</span>
-<span class=dl>INPUT</span><span class=p>;</span>
+<pre class=codehilite><code class=language-php>&lt;?php header('Content-Type: text/html; charset=UTF-8'); ?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;?php
+$input = &lt;&lt;&lt;INPUT
+faketitle onmouseover=alert(/Laminas!/);
+INPUT;
 
-<span class=nv>$escaper</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Laminas\Escaper\Escaper</span><span class=p>(</span><span class=s1>&#39;utf-8&#39;</span><span class=p>);</span>
-<span class=nv>$output</span> <span class=o>=</span> <span class=nv>$escaper</span><span class=o>-&gt;</span><span class=na>escapeHtmlAttr</span><span class=p>(</span><span class=nv>$input</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;html&gt;</span>
-<span class=x>&lt;head&gt;</span>
-<span class=x>    &lt;title&gt;Quoteless Attribute&lt;/title&gt;</span>
-<span class=x>    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span>
-<span class=x>&lt;/head&gt;</span>
-<span class=x>&lt;body&gt;</span>
-<span class=x>    &lt;div&gt;</span>
-<span class=x>        </span><span class=cp>&lt;?php</span>
-        <span class=c1>// the span tag will look like:</span>
-        <span class=c1>// &lt;span title=faketitle&amp;#x20;onmouseover&amp;#x3D;alert&amp;#x28;&amp;#x2F;Laminas&amp;#x21;&amp;#x2F;&amp;#x29;&amp;#x3B;&gt;</span>
-        <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>        &lt;span title=</span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$output</span> <span class=cp>?&gt;</span><span class=x>&gt;</span>
-<span class=x>            What framework are you using?</span>
-<span class=x>        &lt;/span&gt;</span>
-<span class=x>    &lt;/div&gt;</span>
-<span class=x>&lt;/body&gt;</span>
-<span class=x>&lt;/html&gt;</span>
-</pre></div></p>
+$escaper = new Laminas\Escaper\Escaper('utf-8');
+$output = $escaper-&gt;escapeHtmlAttr($input);
+?&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Quoteless Attribute&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;?php
+        // the span tag will look like:
+        // &lt;span title=faketitle&amp;#x20;onmouseover&amp;#x3D;alert&amp;#x28;&amp;#x2F;Laminas&amp;#x21;&amp;#x2F;&amp;#x29;&amp;#x3B;&gt;
+        ?&gt;
+        &lt;span title=&lt;?= $output ?&gt;&gt;
+            What framework are you using?
+        &lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>In the above example, the malicious input from the attacker becomes completely
 harmless as we used proper HTML attribute escaping!</p>
 
@@ -519,9 +520,10 @@ harmless as we used proper HTML attribute escaping!</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -558,7 +560,7 @@ harmless as we used proper HTML attribute escaping!</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-escaper//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-escaper/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -567,8 +569,8 @@ harmless as we used proper HTML attribute escaping!</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-escaper//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-escaper/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>
