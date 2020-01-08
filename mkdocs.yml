@@ -16,4 +16,3 @@ site_description: 'Securely and safely escape HTML, HTML attributes, JavaScript,
 repo_url: 'https://github.com/laminas/laminas-escaper'
 extra:
     project: Components
-    project_url: 'https://docs.laminas.dev'
