@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://docs.laminas.dev/laminas-escaper/</loc>
-     <lastmod>2020-02-28</lastmod>
+     <lastmod>2020-02-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://docs.laminas.dev/laminas-escaper/intro/</loc>
-     <lastmod>2020-02-28</lastmod>
+     <lastmod>2020-02-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://docs.laminas.dev/laminas-escaper/theory-of-operation/</loc>
-     <lastmod>2020-02-28</lastmod>
+     <lastmod>2020-02-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://docs.laminas.dev/laminas-escaper/configuration/</loc>
-     <lastmod>2020-02-28</lastmod>
+     <lastmod>2020-02-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://docs.laminas.dev/laminas-escaper/escaping-html/</loc>
-     <lastmod>2020-02-28</lastmod>
+     <lastmod>2020-02-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://docs.laminas.dev/laminas-escaper/escaping-html-attributes/</loc>
-     <lastmod>2020-02-28</lastmod>
+     <lastmod>2020-02-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://docs.laminas.dev/laminas-escaper/escaping-javascript/</loc>
-     <lastmod>2020-02-28</lastmod>
+     <lastmod>2020-02-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://docs.laminas.dev/laminas-escaper/escaping-css/</loc>
-     <lastmod>2020-02-28</lastmod>
+     <lastmod>2020-02-29</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://docs.laminas.dev/laminas-escaper/escaping-url/</loc>
-     <lastmod>2020-02-28</lastmod>
+     <lastmod>2020-02-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
