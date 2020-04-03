@@ -332,22 +332,23 @@ the caller.</p>
 own set of rules according to which escaping is performed. An example will allow
 us to clearly demonstrate the difference, and how the same characters are being
 escaped differently between contexts:</p>
-<pre class=codehilite><code class=language-php>$escaper = new Laminas\Escaper\Escaper('utf-8');
+<pre class="highlight"><code class="language-php">$escaper = new Laminas\Escaper\Escaper('utf-8');
 
 // &amp;lt;script&amp;gt;alert(&amp;quot;laminas&amp;quot;)&amp;lt;/script&amp;gt;
-echo $escaper-&gt;escapeHtml('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');
+echo $escaper-&gt;escapeHtml('&lt;script&gt;alert("laminas")&lt;/script&gt;');
 
 // &amp;lt;script&amp;gt;alert&amp;#x28;&amp;quot;laminas&amp;quot;&amp;#x29;&amp;lt;&amp;#x2F;script&amp;gt;
-echo $escaper-&gt;escapeHtmlAttr('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');
+echo $escaper-&gt;escapeHtmlAttr('&lt;script&gt;alert("laminas")&lt;/script&gt;');
 
 // \x3Cscript\x3Ealert\x28\x22laminas\x22\x29\x3C\x2Fscript\x3E
-echo $escaper-&gt;escapeJs('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');
+echo $escaper-&gt;escapeJs('&lt;script&gt;alert("laminas")&lt;/script&gt;');
 
 // \3C script\3E alert\28 \22 laminas\22 \29 \3C \2F script\3E
-echo $escaper-&gt;escapeCss('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');
+echo $escaper-&gt;escapeCss('&lt;script&gt;alert("laminas")&lt;/script&gt;');
 
 // %3Cscript%3Ealert%28%22laminas%22%29%3C%2Fscript%3E
-echo $escaper-&gt;escapeUrl('&lt;script&gt;alert(&quot;laminas&quot;)&lt;/script&gt;');</code></pre>
+echo $escaper-&gt;escapeUrl('&lt;script&gt;alert("laminas")&lt;/script&gt;');</code></pre>
+
 <p>More detailed examples will be given in later chapters.</p>
 <h2 id="the-problem-with-inconsistent-functionality">The Problem with Inconsistent Functionality</h2>
 <p>At present, programmers orient towards the following PHP functions for each

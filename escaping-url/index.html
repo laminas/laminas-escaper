@@ -320,42 +320,43 @@ RFC 3986 since PHP 5.3. It is included primarily for consistency.</p>
 itself.</p>
 <h2 id="example-of-bad-url-escaping">Example of Bad URL Escaping</h2>
 <p>XSS attacks are easy if data inserted into URLs is not escaped properly:</p>
-<pre class=codehilite><code class=language-php>&lt;?php header('Content-Type: application/xhtml+xml; charset=UTF-8'); ?&gt;
+<pre class="highlight"><code class="language-php">&lt;?php header('Content-Type: application/xhtml+xml; charset=UTF-8'); ?&gt;
 &lt;!DOCTYPE html&gt;
 &lt;?php
 $input = &lt;&lt;&lt;INPUT
-&quot; onmouseover=&quot;alert('laminas')
+" onmouseover="alert('laminas')
 INPUT;
 ?&gt;
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
 &lt;head&gt;
     &lt;title&gt;Unescaped URL data&lt;/title&gt;
-    &lt;meta charset=&quot;UTF-8&quot;/&gt;
+    &lt;meta charset="UTF-8"/&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;a href=&quot;http://example.com/?name=&lt;?= $input ?&gt;&quot;&gt;Click here!&lt;/a&gt;
+    &lt;a href="http://example.com/?name=&lt;?= $input ?&gt;"&gt;Click here!&lt;/a&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
+
 <h2 id="example-of-good-url-escaping">Example of Good URL Escaping</h2>
 <p>By properly escaping data in URLs by using <code>escapeUrl()</code>, we can prevent XSS
 attacks:</p>
-<pre class=codehilite><code class=language-php>&lt;?php header('Content-Type: application/xhtml+xml; charset=UTF-8'); ?&gt;
+<pre class="highlight"><code class="language-php">&lt;?php header('Content-Type: application/xhtml+xml; charset=UTF-8'); ?&gt;
 &lt;!DOCTYPE html&gt;
 &lt;?php
 $input = &lt;&lt;&lt;INPUT
-&quot; onmouseover=&quot;alert('laminas')
+" onmouseover="alert('laminas')
 INPUT;
 
 $escaper = new Laminas\Escaper\Escaper('utf-8');
 $output = $escaper-&gt;escapeUrl($input);
 ?&gt;
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
 &lt;head&gt;
     &lt;title&gt;Unescaped URL data&lt;/title&gt;
-    &lt;meta charset=&quot;UTF-8&quot;/&gt;
+    &lt;meta charset="UTF-8"/&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;a href=&quot;http://example.com/?name=&lt;?= $output ?&gt;&quot;&gt;Click here!&lt;/a&gt;
+    &lt;a href="http://example.com/?name=&lt;?= $output ?&gt;"&gt;Click here!&lt;/a&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
