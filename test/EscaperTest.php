@@ -9,6 +9,7 @@
 namespace LaminasTest\Escaper;
 
 use Laminas\Escaper\Escaper;
+use Laminas\Escaper\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class EscaperTest extends TestCase
@@ -174,25 +175,23 @@ class EscaperTest extends TestCase
      */
     protected $escaper;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->escaper = new Escaper('UTF-8');
     }
 
-    /**
-     * @expectedException \Laminas\Escaper\Exception\InvalidArgumentException
-     * @expectedExceptionMessage Laminas\Escaper\Escaper constructor parameter must be a string, received integer
-     */
     public function testSettingEncodingToNonStringShouldThrowException()
     {
-        $escaper = new Escaper(1);
+        $this->expectExceptionMessage(
+            "Laminas\Escaper\Escaper constructor parameter must be a string, received integer"
+        );
+        $this->expectException(InvalidArgumentException::class);
+        new Escaper(1);
     }
 
-    /**
-     * @expectedException \Laminas\Escaper\Exception\InvalidArgumentException
-     */
     public function testSettingEncodingToEmptyStringShouldThrowException()
     {
+        $this->expectException(InvalidArgumentException::class);
         new Escaper('');
     }
 
@@ -207,7 +206,7 @@ class EscaperTest extends TestCase
 
     public function testSettingEncodingToInvalidValueShouldThrowException()
     {
-        $this->expectException(\Laminas\Escaper\Exception\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new Escaper('invalid-encoding');
     }
 
