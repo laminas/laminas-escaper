@@ -233,7 +233,7 @@
             </div>
 
             
-            <div class="col-4 text-sm-right">
+            <div class="col-4 text-right">
                 
                     
 
@@ -356,7 +356,6 @@ $output = htmlspecialchars($input);
     &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-
 <p>In the above example, the default <code>ENT_COMPAT</code> flag is being used, which does
 not escape single quotes, thus resulting in an alert box popping up when the
 <code>onmouseover</code> event happens on the <code>span</code> element.</p>
@@ -389,7 +388,6 @@ $output = htmlspecialchars($input, ENT_QUOTES);
     &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-
 <p>The above example shows how it is easy to break out from unquoted attributes in
 HTML5.</p>
 <h2 id="example-of-good-html-attribute-escaping">Example of Good HTML Attribute Escaping</h2>
@@ -422,7 +420,6 @@ $output = $escaper-&gt;escapeHtmlAttr($input);
     &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-
 <p>In the above example, the malicious input from the attacker becomes completely
 harmless as we used proper HTML attribute escaping!</p>
 

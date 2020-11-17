@@ -233,7 +233,7 @@
             </div>
 
             
-            <div class="col-4 text-sm-right">
+            <div class="col-4 text-right">
                 
                     
 
@@ -356,7 +356,6 @@ $output = json_encode($input);
     &lt;p&gt;json_encode() is not good for escaping javascript!&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-
 <p>The above example will show an alert popup box as soon as the page is loaded,
 because the data is not properly escaped for the Javascript context.</p>
 <h2 id="example-of-good-javascript-escaping">Example of Good Javascript Escaping</h2>
@@ -389,7 +388,6 @@ bar\x26quot\x3B\x3B\x20alert\x28\x26quot\x3BMeow\x21\x26quot\x3B\x29\x3B\x20var\
     &lt;p&gt;Laminas\Escaper\Escaper::escapeJs() is good for escaping javascript!&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-
 <p>In the above example, the Javascript parser will most likely report a
 <code>SyntaxError</code>, but at least the targeted application remains safe from such
 attacks.</p>

@@ -233,7 +233,7 @@
             </div>
 
             
-            <div class="col-4 text-sm-right">
+            <div class="col-4 text-right">
                 
                     
 
@@ -330,7 +330,6 @@ $escaper = new Laminas\Escaper\Escaper('utf-8');
 &lt;div class="user-provided-input"&gt;
     &lt;?= $escaper-&gt;escapeHtml($input) // all safe! ?&gt;
 &lt;/div&gt;</code></pre>
-
 <p>One thing a developer needs to pay special attention to is the encoding in which
 the document is served to the client, as it <strong>must be the same</strong> as the encoding
 used for escaping!</p>
@@ -353,7 +352,6 @@ $escaper = new Laminas\Escaper\Escaper('utf-8');
     echo $escaper-&gt;escapeHtml($input);
 ?&gt;
 &lt;/body&gt;</code></pre>
-
 <h2 id="example-of-good-html-escaping">Example of Good HTML Escaping</h2>
 <p>An example of correct usage:</p>
 <pre class="highlight"><code class="language-php">&lt;?php

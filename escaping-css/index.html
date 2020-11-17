@@ -233,7 +233,7 @@
             </div>
 
             
-            <div class="col-4 text-sm-right">
+            <div class="col-4 text-right">
                 
                     
 
@@ -340,7 +340,6 @@ INPUT;
     &lt;p&gt;User controlled CSS needs to be properly escaped!&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-
 <p>In the above example, by failing to escape the user provided CSS, an attacker
 can execute an XSS attack fairly easily.</p>
 <h2 id="example-of-good-css-escaping">Example of Good CSS Escaping</h2>
@@ -373,7 +372,6 @@ $output = $escaper-&gt;escapeCss($input);
     &lt;p&gt;User controlled CSS needs to be properly escaped!&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-
 <p>By properly escaping user controlled CSS, we can prevent XSS attacks in our web
 applications.</p>
 
