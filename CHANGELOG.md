@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#9](https://github.com/laminas/laminas-escaper/pull/9) Adds PHP 8.0 support
 
 ### Changed
 
