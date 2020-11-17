@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
+- [#10](https://github.com/laminas/laminas-escaper/pull/10) Adds Psalm as QA tool
+
 - [#9](https://github.com/laminas/laminas-escaper/pull/9) Adds PHP 8.0 support
 
 ### Changed

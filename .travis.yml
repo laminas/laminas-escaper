@@ -46,6 +46,7 @@ install:
 
 script:
   - if [[ $TEST_COVERAGE == 'true' ]]; then composer run-script test-coverage --timeout=400 -- --verbose ; else composer run-script test --timeout=300 -- --verbose ; fi
+  - if [[ $TEST_COVERAGE == 'true' ]]; then composer run-script static-analysis ; fi
   - if [[ $CS_CHECK == 'true' ]]; then composer cs-check ; fi
 
 after_script:
