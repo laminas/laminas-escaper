@@ -1,32 +1,18 @@
 {
     "name": "laminas/laminas-escaper",
     "description": "Securely and safely escape HTML, HTML attributes, JavaScript, CSS, and URLs",
-    "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
         "escaper"
     ],
     "homepage": "https://laminas.dev",
-    "support": {
-        "docs": "https://docs.laminas.dev/laminas-escaper/",
-        "issues": "https://github.com/laminas/laminas-escaper/issues",
-        "source": "https://github.com/laminas/laminas-escaper",
-        "rss": "https://github.com/laminas/laminas-escaper/releases.atom",
-        "chat": "https://laminas.dev/chat",
-        "forum": "https://discourse.laminas.dev"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-    },
+    "license": "BSD-3-Clause",
     "require": {
         "php": "^7.3 || ~8.0.0",
         "laminas/laminas-zendframework-bridge": "^1.0"
     },
-    "suggest": {
-        "ext-iconv": "*",
-        "ext-mbstring": "*"
+    "replace": {
+        "zendframework/zend-escaper": "^2.6.1"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "~1.0.0",
@@ -34,6 +20,14 @@
         "psalm/plugin-phpunit": "^0.12.2",
         "vimeo/psalm": "^3.16"
     },
+    "suggest": {
+        "ext-iconv": "*",
+        "ext-mbstring": "*"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {},
     "autoload": {
         "psr-4": {
             "Laminas\\Escaper\\": "src/"
@@ -55,7 +49,12 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "replace": {
-        "zendframework/zend-escaper": "^2.6.1"
+    "support": {
+        "issues": "https://github.com/laminas/laminas-escaper/issues",
+        "forum": "https://discourse.laminas.dev",
+        "chat": "https://laminas.dev/chat",
+        "source": "https://github.com/laminas/laminas-escaper",
+        "docs": "https://docs.laminas.dev/laminas-escaper/",
+        "rss": "https://github.com/laminas/laminas-escaper/releases.atom"
     }
 }
