@@ -1,6 +1,6 @@
 # laminas-escaper
 
-[![Build Status](https://travis-ci.com/laminas/laminas-escaper.svg?branch=master)](https://travis-ci.com/laminas/laminas-escaper)
+[![Build Status](https://github.com/laminas/laminas-escaper/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/laminas/laminas-escaper/actions/workflows/continuous-integration.yml)
 [![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-escaper/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-escaper?branch=master)
 
 The OWASP Top 10 web security risks study lists Cross-Site Scripting (XSS) in
