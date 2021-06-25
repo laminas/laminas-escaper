@@ -132,10 +132,10 @@ class Escaper
      * Constructor: Single parameter allows setting of global encoding for use by
      * the current object.
      *
-     * @param string $encoding
+     * @param string|null $encoding
      * @throws Exception\InvalidArgumentException
      */
-    public function __construct($encoding = null)
+    public function __construct(?string $encoding = null)
     {
         if ($encoding !== null) {
             if (! is_string($encoding)) {
@@ -186,7 +186,7 @@ class Escaper
      * @param string $string
      * @return string
      */
-    public function escapeHtml($string)
+    public function escapeHtml(string $string)
     {
         return htmlspecialchars($string, $this->htmlSpecialCharsFlags, $this->encoding);
     }
@@ -199,7 +199,7 @@ class Escaper
      * @param string $string
      * @return string
      */
-    public function escapeHtmlAttr($string)
+    public function escapeHtmlAttr(string $string)
     {
         $string = $this->toUtf8($string);
         if ($string === '' || ctype_digit($string)) {
@@ -222,7 +222,7 @@ class Escaper
      * @param string $string
      * @return string
      */
-    public function escapeJs($string)
+    public function escapeJs(string $string)
     {
         $string = $this->toUtf8($string);
         if ($string === '' || ctype_digit($string)) {
@@ -241,7 +241,7 @@ class Escaper
      * @param string $string
      * @return string
      */
-    public function escapeUrl($string)
+    public function escapeUrl(string $string)
     {
         return rawurlencode($string);
     }
@@ -253,7 +253,7 @@ class Escaper
      * @param string $string
      * @return string
      */
-    public function escapeCss($string)
+    public function escapeCss(string $string)
     {
         $string = $this->toUtf8($string);
         if ($string === '' || ctype_digit($string)) {
