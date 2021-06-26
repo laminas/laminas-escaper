@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="3.18.2@19aa905f7c3c7350569999a93c40ae91ae4e1626">
   <file src="src/Escaper.php">
-    <DocblockTypeContradiction occurrences="1">
-      <code>is_string($encoding)</code>
-    </DocblockTypeContradiction>
     <MixedArgument occurrences="10">
       <code>$chr</code>
       <code>$chr</code>
@@ -42,10 +39,7 @@
       <code>array&lt;string, array{0: string, 1: string}&gt;</code>
       <code>array&lt;string, array{0: string}&gt;</code>
     </InvalidReturnType>
-    <InvalidScalarArgument occurrences="1">
-      <code>1</code>
-    </InvalidScalarArgument>
-    <MissingReturnType occurrences="10">
+    <MissingReturnType occurrences="9">
       <code>testCssEscapingReturnsStringIfContainsOnlyDigits</code>
       <code>testCssEscapingReturnsStringIfZeroLength</code>
       <code>testHtmlAttributeEscapingEscapesOwaspRecommendedRanges</code>
@@ -54,7 +48,6 @@
       <code>testReturnsEncodingFromGetter</code>
       <code>testSettingEncodingToEmptyStringShouldThrowException</code>
       <code>testSettingEncodingToInvalidValueShouldThrowException</code>
-      <code>testSettingEncodingToNonStringShouldThrowException</code>
       <code>testUnicodeCodepointConversionToUtf8</code>
     </MissingReturnType>
   </file>
