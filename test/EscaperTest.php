@@ -22,15 +22,6 @@ class EscaperTest extends TestCase
         $this->escaper = new Escaper('UTF-8');
     }
 
-    public function testSettingEncodingToNonStringShouldThrowException()
-    {
-        $this->expectExceptionMessage(
-            "Laminas\Escaper\Escaper constructor parameter must be a string, received integer"
-        );
-        $this->expectException(InvalidArgumentException::class);
-        new Escaper(1);
-    }
-
     public function testSettingEncodingToEmptyStringShouldThrowException()
     {
         $this->expectException(InvalidArgumentException::class);
