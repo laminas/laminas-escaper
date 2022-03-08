@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Escaper;
 
 use Exception;
+use Generator;
 use Laminas\Escaper\Escaper;
 use Laminas\Escaper\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -360,8 +361,8 @@ class EscaperTest extends TestCase
         throw new Exception('Codepoint requested outside of Unicode range');
     }
 
-    /** @psalm-return iterable<string, array{0: string, 1: string}> */
-    public function owaspJSRecommendedEscapeRangeProvider(): iterable
+    /** @psalm-return Generator<int, array{0: int, 1: string}> */
+    public function owaspJSRecommendedEscapeRangeProvider(): Generator
     {
         $immune = [',', '.', '_']; // Exceptions to escaping ranges
         for ($chr = 0; $chr < 0xFF; $chr++) {
@@ -370,27 +371,28 @@ class EscaperTest extends TestCase
                 || $chr >= 0x41 && $chr <= 0x5A
                 || $chr >= 0x61 && $chr <= 0x7A
             ) {
-                $literal = $this->codepointToUtf8($chr);
-                yield $literal => [$literal, 'assertEquals'];
+                yield $chr => [$chr, 'assertEquals'];
                 continue;
             }
 
             $literal = $this->codepointToUtf8($chr);
             if (in_array($literal, $immune)) {
-                yield $literal => [$literal, 'assertEquals'];
+                yield $chr => [$chr, 'assertEquals'];
                 continue;
             }
 
-            yield $literal => [$literal, 'assertNotEquals'];
+            yield $chr => [$chr, 'assertNotEquals'];
         }
     }
 
     /**
      * @dataProvider owaspJSRecommendedEscapeRangeProvider
      */
-    public function testJavascriptEscapingEscapesOwaspRecommendedRanges(string $value, string $assertion): void
+    public function testJavascriptEscapingEscapesOwaspRecommendedRanges(int $codepoint, string $assertion): void
     {
-        $this->$assertion($value, $this->escaper->escapeJs($value));
+        $literal = $this->codepointToUtf8($codepoint);
+
+        $this->$assertion($literal, $this->escaper->escapeJs($literal));
     }
 
     public function testHtmlAttributeEscapingEscapesOwaspRecommendedRanges(): void
@@ -419,30 +421,34 @@ class EscaperTest extends TestCase
         }
     }
 
-    /** @psalm-return iterable<string, array{0: string, 1: string}> */
+    /** @psalm-return array<int, array{0: int, 1: string}> */
     public function owaspCSSRecommendedEscapeRangeProvider(): iterable
     {
+        $providerData = [];
+
         for ($chr = 0; $chr < 0xFF; $chr++) {
             if (
                 $chr >= 0x30 && $chr <= 0x39
                 || $chr >= 0x41 && $chr <= 0x5A
                 || $chr >= 0x61 && $chr <= 0x7A
             ) {
-                $literal = $this->codepointToUtf8($chr);
-                yield $literal => [$literal, 'assertEquals'];
+                $providerData[$chr] = [$chr, 'assertEquals'];
                 continue;
             }
 
-            $literal = $this->codepointToUtf8($chr);
-            yield $literal => [$literal, 'assertNotEquals'];
+            $providerData[$chr] = [$chr, 'assertNotEquals'];
         }
+
+        return $providerData;
     }
 
     /**
      * @dataProvider owaspCSSRecommendedEscapeRangeProvider
      */
-    public function testCssEscapingEscapesOwaspRecommendedRanges(string $value, string $assertion): void
+    public function testCssEscapingEscapesOwaspRecommendedRanges(int $codePoint, string $assertion): void
     {
-        $this->$assertion($value, $this->escaper->escapeCss($value));
+        $literal = $this->codepointToUtf8($codePoint);
+
+        $this->$assertion($literal, $this->escaper->escapeCss($literal));
     }
 }
