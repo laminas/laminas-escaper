@@ -2,10 +2,6 @@
     "source": {
         "directories": [
             "src"
-        ],
-        "excludes": [
-            "test/**/*.php",
-            "vendor/**/*.php"
         ]
     },
     "logs": {
