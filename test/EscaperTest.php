@@ -29,7 +29,7 @@ class EscaperTest extends TestCase
         new Escaper('');
     }
 
-    /** @psalm-return array<string, array{0: string}> */
+    /** @return array<array-key, array{0: string}> */
     public function supportedEncodingsProvider(): array
     {
         return [
@@ -90,7 +90,7 @@ class EscaperTest extends TestCase
         $this->assertEquals('utf-8', $this->escaper->getEncoding());
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function htmlSpecialCharsProvider(): array
     {
         return [
@@ -110,7 +110,7 @@ class EscaperTest extends TestCase
         $this->assertEquals($encoded, $this->escaper->escapeHtml($string), 'Failed to escape: ' . $string);
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function htmlAttrSpecialCharsProvider(): array
     {
         return [
@@ -159,7 +159,7 @@ class EscaperTest extends TestCase
         $this->assertEquals($encoded, $this->escaper->escapeHtmlAttr($string), 'Failed to escape: ' . $string);
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function jsSpecialCharsProvider(): array
     {
         return [
@@ -177,7 +177,7 @@ class EscaperTest extends TestCase
             ',' => [',', ','],
             '.' => ['.', '.'],
             '_' => ['_', '_'],
-            /* Basic alnums exluded */
+            /* Basic alnums excluded */
             'a' => ['a', 'a'],
             'A' => ['A', 'A'],
             'z' => ['z', 'z'],
@@ -212,7 +212,7 @@ class EscaperTest extends TestCase
         $this->assertEquals('123', $this->escaper->escapeJs('123'));
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function cssSpecialCharsProvider(): array
     {
         return [
@@ -265,7 +265,7 @@ class EscaperTest extends TestCase
         $this->assertEquals('123', $this->escaper->escapeCss('123'));
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function urlSpecialCharsProvider(): array
     {
         return [
@@ -361,7 +361,7 @@ class EscaperTest extends TestCase
         throw new Exception('Codepoint requested outside of Unicode range');
     }
 
-    /** @psalm-return Generator<int, array{0: int, 1: string}> */
+    /** @return Generator<int, array{0: int, 1: string}> */
     public function owaspJSRecommendedEscapeRangeProvider(): Generator
     {
         $immune = [',', '.', '_']; // Exceptions to escaping ranges
@@ -421,8 +421,8 @@ class EscaperTest extends TestCase
         }
     }
 
-    /** @psalm-return array<int, array{0: int, 1: string}> */
-    public function owaspCSSRecommendedEscapeRangeProvider(): iterable
+    /** @return array<int, array{0: int, 1: string}> */
+    public function owaspCSSRecommendedEscapeRangeProvider(): array
     {
         $providerData = [];
 
