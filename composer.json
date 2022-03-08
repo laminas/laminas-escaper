@@ -34,10 +34,10 @@
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "~2.3.0",
-        "maglnet/composer-require-checker": "^2.1",
-        "phpunit/phpunit": "^9.3",
-        "psalm/plugin-phpunit": "^0.12.2",
-        "vimeo/psalm": "^3.16"
+        "maglnet/composer-require-checker": "^3.8.0",
+        "phpunit/phpunit": "^9.5.18",
+        "psalm/plugin-phpunit": "^0.16.1",
+        "vimeo/psalm": "^4.22.0"
     },
     "autoload": {
         "psr-4": {

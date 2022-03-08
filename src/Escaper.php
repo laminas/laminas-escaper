@@ -398,7 +398,6 @@ class Escaper
      */
     protected function convertEncoding($string, $to, $from)
     {
-        /** @psalm-var string|false $result */
         $result = mb_convert_encoding($string, $to, $from);
 
         if ($result === false) {

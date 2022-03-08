@@ -22,7 +22,7 @@ class EscaperTest extends TestCase
         $this->escaper = new Escaper('UTF-8');
     }
 
-    public function testSettingEncodingToEmptyStringShouldThrowException()
+    public function testSettingEncodingToEmptyStringShouldThrowException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Escaper('');
@@ -78,13 +78,13 @@ class EscaperTest extends TestCase
         $this->assertSame($encoding, $escaper->getEncoding());
     }
 
-    public function testSettingEncodingToInvalidValueShouldThrowException()
+    public function testSettingEncodingToInvalidValueShouldThrowException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Escaper('invalid-encoding');
     }
 
-    public function testReturnsEncodingFromGetter()
+    public function testReturnsEncodingFromGetter(): void
     {
         $this->assertEquals('utf-8', $this->escaper->getEncoding());
     }
@@ -201,12 +201,12 @@ class EscaperTest extends TestCase
         $this->assertEquals($encoded, $this->escaper->escapeJs($string), 'Failed to escape: ' . $string);
     }
 
-    public function testJavascriptEscapingReturnsStringIfZeroLength()
+    public function testJavascriptEscapingReturnsStringIfZeroLength(): void
     {
         $this->assertEquals('', $this->escaper->escapeJs(''));
     }
 
-    public function testJavascriptEscapingReturnsStringIfContainsOnlyDigits()
+    public function testJavascriptEscapingReturnsStringIfContainsOnlyDigits(): void
     {
         $this->assertEquals('123', $this->escaper->escapeJs('123'));
     }
@@ -254,12 +254,12 @@ class EscaperTest extends TestCase
         $this->assertEquals($encoded, $this->escaper->escapeCss($string), 'Failed to escape: ' . $string);
     }
 
-    public function testCssEscapingReturnsStringIfZeroLength()
+    public function testCssEscapingReturnsStringIfZeroLength(): void
     {
         $this->assertEquals('', $this->escaper->escapeCss(''));
     }
 
-    public function testCssEscapingReturnsStringIfContainsOnlyDigits()
+    public function testCssEscapingReturnsStringIfContainsOnlyDigits(): void
     {
         $this->assertEquals('123', $this->escaper->escapeCss('123'));
     }
@@ -319,7 +319,7 @@ class EscaperTest extends TestCase
      * Only testing the first few 2 ranges on this prot. function as that's all these
      * other range tests require
      */
-    public function testUnicodeCodepointConversionToUtf8()
+    public function testUnicodeCodepointConversionToUtf8(): void
     {
         $expected   = " ~ޙ";
         $codepoints = [0x20, 0x7e, 0x799];
@@ -337,7 +337,7 @@ class EscaperTest extends TestCase
      * @return string UTF-8 literal string
      * @throws Exception When codepoint requested is outside Unicode range.
      */
-    protected function codepointToUtf8($codepoint)
+    protected function codepointToUtf8(int $codepoint): string
     {
         if ($codepoint < 0x80) {
             return chr($codepoint);
@@ -393,7 +393,7 @@ class EscaperTest extends TestCase
         $this->$assertion($value, $this->escaper->escapeJs($value));
     }
 
-    public function testHtmlAttributeEscapingEscapesOwaspRecommendedRanges()
+    public function testHtmlAttributeEscapingEscapesOwaspRecommendedRanges(): void
     {
         $immune = [',', '.', '-', '_']; // Exceptions to escaping ranges
         for ($chr = 0; $chr < 0xFF; $chr++) {
