@@ -32,6 +32,7 @@
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "~2.3.0",
+        "maglnet/composer-require-checker": "^2.1",
         "phpunit/phpunit": "^9.3",
         "psalm/plugin-phpunit": "^0.12.2",
         "vimeo/psalm": "^3.16"
