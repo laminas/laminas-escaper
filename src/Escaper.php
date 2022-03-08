@@ -6,10 +6,8 @@ namespace Laminas\Escaper;
 
 use function bin2hex;
 use function ctype_digit;
-use function function_exists;
 use function hexdec;
 use function htmlspecialchars;
-use function iconv;
 use function in_array;
 use function mb_convert_encoding;
 use function ord;
@@ -391,32 +389,22 @@ class Escaper
     }
 
     /**
-     * Encoding conversion helper which wraps iconv and mbstring where they exist or throws
-     * and exception where neither is available.
+     * Encoding conversion helper which wraps mb_convert_encoding
      *
      * @param string $string
      * @param string $to
      * @param array|string $from
-     * @throws Exception\RuntimeException
      * @return string
      */
     protected function convertEncoding($string, $to, $from)
     {
-        if (function_exists('iconv')) {
-            $result = iconv($from, $to, $string);
-        } elseif (function_exists('mb_convert_encoding')) {
-            $result = mb_convert_encoding($string, $to, $from);
-        } else {
-            throw new Exception\RuntimeException(
-                static::class
-                . ' requires either the iconv or mbstring extension to be installed'
-                . ' when escaping for non UTF-8 strings.'
-            );
-        }
+        /** @psalm-var string|false $result */
+        $result = mb_convert_encoding($string, $to, $from);
 
         if ($result === false) {
             return ''; // return non-fatal blank string on encoding errors from users
         }
+
         return $result;
     }
 }

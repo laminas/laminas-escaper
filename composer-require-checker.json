@@ -1,13 +1,1 @@
-{
-    "php-core-extensions" : [
-        "Core",
-        "date",
-        "pcre",
-        "Phar",
-        "Reflection",
-        "SPL",
-        "standard",
-        "iconv",
-        "mbstring"
-    ]
-}
+{}
