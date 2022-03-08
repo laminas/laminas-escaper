@@ -6,7 +6,10 @@
     },
     "logs": {
         "text": "php://stderr",
-        "github": true
+        "github": true,
+        "stryker": {
+            "report": "/^\\d+\\.\\d+\\.x$/"
+        }
     },
     "mutators": {
         "@default": true
