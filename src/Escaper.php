@@ -157,20 +157,9 @@ class Escaper
         $this->htmlSpecialCharsFlags = ENT_QUOTES | ENT_SUBSTITUTE;
 
         // set matcher callbacks
-
-        $this->htmlAttrMatcher = function (array $matches): string {
-            /** @psalm-var list<string> $matches */
-            return $this->htmlAttrMatcher($matches);
-        };
-
-        $this->jsMatcher  = function (array $matches): string {
-            /** @psalm-var list<string> $matches */
-            return $this->jsMatcher($matches);
-        };
-        $this->cssMatcher = function (array $matches): string {
-            /** @psalm-var list<string> $matches */
-            return $this->cssMatcher($matches);
-        };
+        $this->htmlAttrMatcher = [$this, 'htmlAttrMatcher'];
+        $this->jsMatcher       = [$this, 'jsMatcher'];
+        $this->cssMatcher      = [$this, 'cssMatcher'];
     }
 
     /**
@@ -267,7 +256,7 @@ class Escaper
      * Callback function for preg_replace_callback that applies HTML Attribute
      * escaping to all matches.
      *
-     * @param list<string> $matches
+     * @param array<array-key, string> $matches
      * @return string
      */
     protected function htmlAttrMatcher($matches)
@@ -314,7 +303,7 @@ class Escaper
      * Callback function for preg_replace_callback that applies Javascript
      * escaping to all matches.
      *
-     * @param list<string> $matches
+     * @param array<array-key, string> $matches
      * @return string
      */
     protected function jsMatcher($matches)
@@ -337,7 +326,7 @@ class Escaper
      * Callback function for preg_replace_callback that applies CSS
      * escaping to all matches.
      *
-     * @param list<string> $matches
+     * @param array<array-key, string> $matches
      * @return string
      */
     protected function cssMatcher($matches)
