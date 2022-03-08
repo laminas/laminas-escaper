@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Escaper;
 
 use Exception;
+use Generator;
 use Laminas\Escaper\Escaper;
 use Laminas\Escaper\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -22,13 +23,13 @@ class EscaperTest extends TestCase
         $this->escaper = new Escaper('UTF-8');
     }
 
-    public function testSettingEncodingToEmptyStringShouldThrowException()
+    public function testSettingEncodingToEmptyStringShouldThrowException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Escaper('');
     }
 
-    /** @psalm-return array<string, array{0: string}> */
+    /** @return array<array-key, array{0: string}> */
     public function supportedEncodingsProvider(): array
     {
         return [
@@ -78,18 +79,18 @@ class EscaperTest extends TestCase
         $this->assertSame($encoding, $escaper->getEncoding());
     }
 
-    public function testSettingEncodingToInvalidValueShouldThrowException()
+    public function testSettingEncodingToInvalidValueShouldThrowException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Escaper('invalid-encoding');
     }
 
-    public function testReturnsEncodingFromGetter()
+    public function testReturnsEncodingFromGetter(): void
     {
         $this->assertEquals('utf-8', $this->escaper->getEncoding());
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function htmlSpecialCharsProvider(): array
     {
         return [
@@ -109,7 +110,7 @@ class EscaperTest extends TestCase
         $this->assertEquals($encoded, $this->escaper->escapeHtml($string), 'Failed to escape: ' . $string);
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function htmlAttrSpecialCharsProvider(): array
     {
         return [
@@ -158,7 +159,7 @@ class EscaperTest extends TestCase
         $this->assertEquals($encoded, $this->escaper->escapeHtmlAttr($string), 'Failed to escape: ' . $string);
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function jsSpecialCharsProvider(): array
     {
         return [
@@ -176,7 +177,7 @@ class EscaperTest extends TestCase
             ',' => [',', ','],
             '.' => ['.', '.'],
             '_' => ['_', '_'],
-            /* Basic alnums exluded */
+            /* Basic alnums excluded */
             'a' => ['a', 'a'],
             'A' => ['A', 'A'],
             'z' => ['z', 'z'],
@@ -201,17 +202,17 @@ class EscaperTest extends TestCase
         $this->assertEquals($encoded, $this->escaper->escapeJs($string), 'Failed to escape: ' . $string);
     }
 
-    public function testJavascriptEscapingReturnsStringIfZeroLength()
+    public function testJavascriptEscapingReturnsStringIfZeroLength(): void
     {
         $this->assertEquals('', $this->escaper->escapeJs(''));
     }
 
-    public function testJavascriptEscapingReturnsStringIfContainsOnlyDigits()
+    public function testJavascriptEscapingReturnsStringIfContainsOnlyDigits(): void
     {
         $this->assertEquals('123', $this->escaper->escapeJs('123'));
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function cssSpecialCharsProvider(): array
     {
         return [
@@ -254,17 +255,17 @@ class EscaperTest extends TestCase
         $this->assertEquals($encoded, $this->escaper->escapeCss($string), 'Failed to escape: ' . $string);
     }
 
-    public function testCssEscapingReturnsStringIfZeroLength()
+    public function testCssEscapingReturnsStringIfZeroLength(): void
     {
         $this->assertEquals('', $this->escaper->escapeCss(''));
     }
 
-    public function testCssEscapingReturnsStringIfContainsOnlyDigits()
+    public function testCssEscapingReturnsStringIfContainsOnlyDigits(): void
     {
         $this->assertEquals('123', $this->escaper->escapeCss('123'));
     }
 
-    /** @psalm-return array<string, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: string, 1: string}> */
     public function urlSpecialCharsProvider(): array
     {
         return [
@@ -319,7 +320,7 @@ class EscaperTest extends TestCase
      * Only testing the first few 2 ranges on this prot. function as that's all these
      * other range tests require
      */
-    public function testUnicodeCodepointConversionToUtf8()
+    public function testUnicodeCodepointConversionToUtf8(): void
     {
         $expected   = " ~ޙ";
         $codepoints = [0x20, 0x7e, 0x799];
@@ -337,7 +338,7 @@ class EscaperTest extends TestCase
      * @return string UTF-8 literal string
      * @throws Exception When codepoint requested is outside Unicode range.
      */
-    protected function codepointToUtf8($codepoint)
+    protected function codepointToUtf8(int $codepoint): string
     {
         if ($codepoint < 0x80) {
             return chr($codepoint);
@@ -360,8 +361,8 @@ class EscaperTest extends TestCase
         throw new Exception('Codepoint requested outside of Unicode range');
     }
 
-    /** @psalm-return iterable<string, array{0: string, 1: string}> */
-    public function owaspJSRecommendedEscapeRangeProvider(): iterable
+    /** @return Generator<int, array{0: int, 1: string}> */
+    public function owaspJSRecommendedEscapeRangeProvider(): Generator
     {
         $immune = [',', '.', '_']; // Exceptions to escaping ranges
         for ($chr = 0; $chr < 0xFF; $chr++) {
@@ -370,30 +371,31 @@ class EscaperTest extends TestCase
                 || $chr >= 0x41 && $chr <= 0x5A
                 || $chr >= 0x61 && $chr <= 0x7A
             ) {
-                $literal = $this->codepointToUtf8($chr);
-                yield $literal => [$literal, 'assertEquals'];
+                yield $chr => [$chr, 'assertEquals'];
                 continue;
             }
 
             $literal = $this->codepointToUtf8($chr);
             if (in_array($literal, $immune)) {
-                yield $literal => [$literal, 'assertEquals'];
+                yield $chr => [$chr, 'assertEquals'];
                 continue;
             }
 
-            yield $literal => [$literal, 'assertNotEquals'];
+            yield $chr => [$chr, 'assertNotEquals'];
         }
     }
 
     /**
      * @dataProvider owaspJSRecommendedEscapeRangeProvider
      */
-    public function testJavascriptEscapingEscapesOwaspRecommendedRanges(string $value, string $assertion): void
+    public function testJavascriptEscapingEscapesOwaspRecommendedRanges(int $codepoint, string $assertion): void
     {
-        $this->$assertion($value, $this->escaper->escapeJs($value));
+        $literal = $this->codepointToUtf8($codepoint);
+
+        $this->$assertion($literal, $this->escaper->escapeJs($literal));
     }
 
-    public function testHtmlAttributeEscapingEscapesOwaspRecommendedRanges()
+    public function testHtmlAttributeEscapingEscapesOwaspRecommendedRanges(): void
     {
         $immune = [',', '.', '-', '_']; // Exceptions to escaping ranges
         for ($chr = 0; $chr < 0xFF; $chr++) {
@@ -419,30 +421,34 @@ class EscaperTest extends TestCase
         }
     }
 
-    /** @psalm-return iterable<string, array{0: string, 1: string}> */
-    public function owaspCSSRecommendedEscapeRangeProvider(): iterable
+    /** @return array<int, array{0: int, 1: string}> */
+    public function owaspCSSRecommendedEscapeRangeProvider(): array
     {
+        $providerData = [];
+
         for ($chr = 0; $chr < 0xFF; $chr++) {
             if (
                 $chr >= 0x30 && $chr <= 0x39
                 || $chr >= 0x41 && $chr <= 0x5A
                 || $chr >= 0x61 && $chr <= 0x7A
             ) {
-                $literal = $this->codepointToUtf8($chr);
-                yield $literal => [$literal, 'assertEquals'];
+                $providerData[$chr] = [$chr, 'assertEquals'];
                 continue;
             }
 
-            $literal = $this->codepointToUtf8($chr);
-            yield $literal => [$literal, 'assertNotEquals'];
+            $providerData[$chr] = [$chr, 'assertNotEquals'];
         }
+
+        return $providerData;
     }
 
     /**
      * @dataProvider owaspCSSRecommendedEscapeRangeProvider
      */
-    public function testCssEscapingEscapesOwaspRecommendedRanges(string $value, string $assertion): void
+    public function testCssEscapingEscapesOwaspRecommendedRanges(int $codePoint, string $assertion): void
     {
-        $this->$assertion($value, $this->escaper->escapeCss($value));
+        $literal = $this->codepointToUtf8($codePoint);
+
+        $this->$assertion($literal, $this->escaper->escapeCss($literal));
     }
 }
