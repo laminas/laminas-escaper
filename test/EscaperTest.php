@@ -15,7 +15,7 @@ use function in_array;
 
 class EscaperTest extends TestCase
 {
-    private escaper $escaper;
+    private Escaper $escaper;
 
     protected function setUp(): void
     {
@@ -454,8 +454,8 @@ class EscaperTest extends TestCase
     public function testCanEscapeTextInAlternativeEncodings(): void
     {
         $westernLatin1String = chr(0x43) . chr(0x61) . chr(0x66) . chr(0xE9);
-        $expect = 'Caf&#xE9;';
-        $escaper = new Escaper('iso-8859-1');
+        $expect              = 'Caf&#xE9;';
+        $escaper             = new Escaper('iso-8859-1');
         self::assertSame($expect, $escaper->escapeHtmlAttr($westernLatin1String));
     }
 }
