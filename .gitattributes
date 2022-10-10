@@ -1,13 +1,16 @@
+/.github/ export-ignore
+/docs/ export-ignore
+/test/ export-ignore
+
 /.gitignore export-ignore
 /.laminas-ci.json export-ignore
+/composer.lock export-ignore
 /composer-require-checker.json export-ignore
+/renovate.json export-ignore
+/.gitattributes export-ignore
 /infection.json.dist export-ignore
 /phpcs.xml.dist export-ignore
-/.gitattributes export-ignore
 /phpunit.xml.dist export-ignore
 /psalm.xml export-ignore
 /psalm-baseline.xml export-ignore
 /mkdocs.yml export-ignore
-/.github/ export-ignore
-/docs/ export-ignore
-/test/ export-ignore

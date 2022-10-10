@@ -15,8 +15,7 @@ use function in_array;
 
 class EscaperTest extends TestCase
 {
-    /** @var Escaper */
-    protected $escaper;
+    private Escaper $escaper;
 
     protected function setUp(): void
     {
@@ -76,7 +75,7 @@ class EscaperTest extends TestCase
     public function testSettingValidEncodingShouldNotThrowExceptions(string $encoding): void
     {
         $escaper = new Escaper($encoding);
-        $this->assertSame($encoding, $escaper->getEncoding());
+        self::assertSame($encoding, $escaper->getEncoding());
     }
 
     public function testSettingEncodingToInvalidValueShouldThrowException(): void
@@ -87,7 +86,7 @@ class EscaperTest extends TestCase
 
     public function testReturnsEncodingFromGetter(): void
     {
-        $this->assertEquals('utf-8', $this->escaper->getEncoding());
+        self::assertEquals('utf-8', $this->escaper->getEncoding());
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
@@ -107,7 +106,7 @@ class EscaperTest extends TestCase
      */
     public function testHtmlEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
-        $this->assertEquals($encoded, $this->escaper->escapeHtml($string), 'Failed to escape: ' . $string);
+        self::assertEquals($encoded, $this->escaper->escapeHtml($string), 'Failed to escape: ' . $string);
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
@@ -156,7 +155,7 @@ class EscaperTest extends TestCase
      */
     public function testHtmlAttributeEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
-        $this->assertEquals($encoded, $this->escaper->escapeHtmlAttr($string), 'Failed to escape: ' . $string);
+        self::assertEquals($encoded, $this->escaper->escapeHtmlAttr($string), 'Failed to escape: ' . $string);
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
@@ -199,17 +198,17 @@ class EscaperTest extends TestCase
      */
     public function testJavascriptEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
-        $this->assertEquals($encoded, $this->escaper->escapeJs($string), 'Failed to escape: ' . $string);
+        self::assertEquals($encoded, $this->escaper->escapeJs($string), 'Failed to escape: ' . $string);
     }
 
     public function testJavascriptEscapingReturnsStringIfZeroLength(): void
     {
-        $this->assertEquals('', $this->escaper->escapeJs(''));
+        self::assertEquals('', $this->escaper->escapeJs(''));
     }
 
     public function testJavascriptEscapingReturnsStringIfContainsOnlyDigits(): void
     {
-        $this->assertEquals('123', $this->escaper->escapeJs('123'));
+        self::assertEquals('123', $this->escaper->escapeJs('123'));
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
@@ -252,17 +251,17 @@ class EscaperTest extends TestCase
      */
     public function testCssEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
-        $this->assertEquals($encoded, $this->escaper->escapeCss($string), 'Failed to escape: ' . $string);
+        self::assertEquals($encoded, $this->escaper->escapeCss($string), 'Failed to escape: ' . $string);
     }
 
     public function testCssEscapingReturnsStringIfZeroLength(): void
     {
-        $this->assertEquals('', $this->escaper->escapeCss(''));
+        self::assertEquals('', $this->escaper->escapeCss(''));
     }
 
     public function testCssEscapingReturnsStringIfContainsOnlyDigits(): void
     {
-        $this->assertEquals('123', $this->escaper->escapeCss('123'));
+        self::assertEquals('123', $this->escaper->escapeCss('123'));
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
@@ -309,7 +308,7 @@ class EscaperTest extends TestCase
      */
     public function testUrlEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
-        $this->assertEquals($encoded, $this->escaper->escapeUrl($string), 'Failed to escape: ' . $string);
+        self::assertEquals($encoded, $this->escaper->escapeUrl($string), 'Failed to escape: ' . $string);
     }
 
     /**
@@ -326,9 +325,9 @@ class EscaperTest extends TestCase
         $codepoints = [0x20, 0x7e, 0x799];
         $result     = '';
         foreach ($codepoints as $value) {
-            $result .= $this->codepointToUtf8($value);
+            $result .= self::codepointToUtf8($value);
         }
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
     /**
@@ -338,7 +337,7 @@ class EscaperTest extends TestCase
      * @return string UTF-8 literal string
      * @throws Exception When codepoint requested is outside Unicode range.
      */
-    protected function codepointToUtf8(int $codepoint): string
+    private static function codepointToUtf8(int $codepoint): string
     {
         if ($codepoint < 0x80) {
             return chr($codepoint);
@@ -375,7 +374,7 @@ class EscaperTest extends TestCase
                 continue;
             }
 
-            $literal = $this->codepointToUtf8($chr);
+            $literal = self::codepointToUtf8($chr);
             if (in_array($literal, $immune)) {
                 yield $chr => [$chr, 'assertEquals'];
                 continue;
@@ -390,7 +389,7 @@ class EscaperTest extends TestCase
      */
     public function testJavascriptEscapingEscapesOwaspRecommendedRanges(int $codepoint, string $assertion): void
     {
-        $literal = $this->codepointToUtf8($codepoint);
+        $literal = self::codepointToUtf8($codepoint);
 
         $this->$assertion($literal, $this->escaper->escapeJs($literal));
     }
@@ -404,14 +403,14 @@ class EscaperTest extends TestCase
                 || $chr >= 0x41 && $chr <= 0x5A
                 || $chr >= 0x61 && $chr <= 0x7A
             ) {
-                $literal = $this->codepointToUtf8($chr);
-                $this->assertEquals($literal, $this->escaper->escapeHtmlAttr($literal));
+                $literal = self::codepointToUtf8($chr);
+                self::assertEquals($literal, $this->escaper->escapeHtmlAttr($literal));
             } else {
-                $literal = $this->codepointToUtf8($chr);
+                $literal = self::codepointToUtf8($chr);
                 if (in_array($literal, $immune)) {
-                    $this->assertEquals($literal, $this->escaper->escapeHtmlAttr($literal));
+                    self::assertEquals($literal, $this->escaper->escapeHtmlAttr($literal));
                 } else {
-                    $this->assertNotEquals(
+                    self::assertNotEquals(
                         $literal,
                         $this->escaper->escapeHtmlAttr($literal),
                         $literal . ' should be escaped!'
@@ -447,8 +446,16 @@ class EscaperTest extends TestCase
      */
     public function testCssEscapingEscapesOwaspRecommendedRanges(int $codePoint, string $assertion): void
     {
-        $literal = $this->codepointToUtf8($codePoint);
+        $literal = self::codepointToUtf8($codePoint);
 
         $this->$assertion($literal, $this->escaper->escapeCss($literal));
+    }
+
+    public function testCanEscapeTextInAlternativeEncodings(): void
+    {
+        $westernLatin1String = chr(0x43) . chr(0x61) . chr(0x66) . chr(0xE9);
+        $expect              = 'Caf&#xE9;';
+        $escaper             = new Escaper('iso-8859-1');
+        self::assertSame($expect, $escaper->escapeHtmlAttr($westernLatin1String));
     }
 }
