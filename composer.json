@@ -39,7 +39,7 @@
         "maglnet/composer-require-checker": "^3.8.0",
         "phpunit/phpunit": "^9.5.18",
         "psalm/plugin-phpunit": "^0.18.0",
-        "vimeo/psalm": "^4.22.0"
+        "vimeo/psalm": "^5.0.0"
     },
     "autoload": {
         "psr-4": {
