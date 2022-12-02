@@ -36,7 +36,7 @@
     "require-dev": {
         "infection/infection": "^0.26.6",
         "laminas/laminas-coding-standard": "~2.4.0",
-        "maglnet/composer-require-checker": "^3.8.0",
+        "maglnet/composer-require-checker": "^4.0.0",
         "phpunit/phpunit": "^9.5.18",
         "psalm/plugin-phpunit": "^0.18.0",
         "vimeo/psalm": "^5.0.0"
