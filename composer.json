@@ -37,7 +37,7 @@
         "infection/infection": "^0.27.0",
         "laminas/laminas-coding-standard": "~2.5.0",
         "maglnet/composer-require-checker": "^3.8.0",
-        "phpunit/phpunit": "^9.6.7",
+        "phpunit/phpunit": "^10.1.1",
         "psalm/plugin-phpunit": "^0.18.4",
         "vimeo/psalm": "^5.9"
     },
