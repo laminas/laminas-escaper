@@ -18,7 +18,7 @@ Several Laminas components provide integrations for consuming
 laminas-escaper, including [laminas-view](https://github.com/laminas/laminas-view),
 which provides a set of helpers that consume it.
 
-<!-- markdownlint-disable-next-line header-increment -->
+<!-- markdownlint-disable-next-line heading-increment -->
 > ### Security
 >
 > laminas-escaper is a security related component. As such, if you believe you have
