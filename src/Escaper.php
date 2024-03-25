@@ -190,9 +190,9 @@ class Escaper
      *
      * @return string
      */
-    public function escapeHtml(string $string)
+    public function escapeHtml(string $string, bool $double_encode = true)
     {
-        return htmlspecialchars($string, $this->htmlSpecialCharsFlags, $this->encoding);
+        return htmlspecialchars($string, $this->htmlSpecialCharsFlags, $this->encoding, $double_encode);
     }
 
     /**
