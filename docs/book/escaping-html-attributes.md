@@ -5,7 +5,7 @@ not overlooked completely by developers. Regular [HTML
 escaping](escaping-html.md) can be used for escaping HTML attributes *only* if
 the attribute value can be **guaranteed as being properly quoted**! To avoid
 confusion, we recommend always using the HTML Attribute escaper method when
-dealing with HTTP attributes specifically.
+dealing with HTML attributes specifically.
 
 To escape data for an HTML Attribute, use `Laminas\Escaper\Escaper`'s
 `escapeHtmlAttr()` method.  Internally it will convert the data to UTF-8, check
