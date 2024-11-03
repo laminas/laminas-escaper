@@ -159,19 +159,13 @@ class Escaper
         // set matcher callbacks
         $this->htmlAttrMatcher =
             /** @param array<array-key, string> $matches */
-            function (array $matches): string {
-                return $this->htmlAttrMatcher($matches);
-            };
+            fn(array $matches): string => $this->htmlAttrMatcher($matches);
         $this->jsMatcher       =
             /** @param array<array-key, string> $matches */
-            function (array $matches): string {
-                return $this->jsMatcher($matches);
-            };
+            fn(array $matches): string => $this->jsMatcher($matches);
         $this->cssMatcher      =
             /** @param array<array-key, string> $matches */
-            function (array $matches): string {
-                return $this->cssMatcher($matches);
-            };
+            fn(array $matches): string => $this->cssMatcher($matches);
     }
 
     /**
