@@ -25,10 +25,11 @@ class EscaperTest extends TestCase
     public function testSettingEncodingToEmptyStringShouldThrowException(): void
     {
         $this->expectException(InvalidArgumentException::class);
+        /** @psalm-suppress InvalidArgument */
         new Escaper('');
     }
 
-    /** @return array<array-key, array{0: string}> */
+    /** @return array<array-key, array{0: non-empty-string}> */
     public function supportedEncodingsProvider(): array
     {
         return [
@@ -70,6 +71,7 @@ class EscaperTest extends TestCase
     }
 
     /**
+     * @param non-empty-string $encoding
      * @dataProvider supportedEncodingsProvider
      */
     public function testSettingValidEncodingShouldNotThrowExceptions(string $encoding): void
