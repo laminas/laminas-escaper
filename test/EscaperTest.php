@@ -28,6 +28,9 @@ final class EscaperTest extends TestCase
     public function testSettingEncodingToEmptyStringShouldThrowException(): void
     {
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Laminas\Escaper\Escaper constructor parameter does not allow a blank value',
+        );
         /** @psalm-suppress InvalidArgument */
         new Escaper('');
     }
@@ -86,6 +89,10 @@ final class EscaperTest extends TestCase
     public function testSettingEncodingToInvalidValueShouldThrowException(): void
     {
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Value of \'invalid-encoding\' passed to Laminas\Escaper\Escaper '
+            . 'constructor parameter is invalid. Provide an encoding supported by htmlspecialchars()',
+        );
         new Escaper('invalid-encoding');
     }
 
@@ -406,7 +413,7 @@ final class EscaperTest extends TestCase
                     self::assertNotEquals(
                         $literal,
                         $this->escaper->escapeHtmlAttr($literal),
-                        $literal . ' should be escaped!'
+                        $literal . ' should be escaped!',
                     );
                 }
             }
