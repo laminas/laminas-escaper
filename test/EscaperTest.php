@@ -8,6 +8,7 @@ use Exception;
 use Generator;
 use Laminas\Escaper\Escaper;
 use Laminas\Escaper\Exception\InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function chr;
@@ -30,7 +31,7 @@ class EscaperTest extends TestCase
     }
 
     /** @return array<array-key, array{0: non-empty-string}> */
-    public function supportedEncodingsProvider(): array
+    public static function supportedEncodingsProvider(): array
     {
         return [
             'iso-8859-1'   => ['iso-8859-1'],
@@ -72,8 +73,8 @@ class EscaperTest extends TestCase
 
     /**
      * @param non-empty-string $encoding
-     * @dataProvider supportedEncodingsProvider
      */
+    #[DataProvider('supportedEncodingsProvider')]
     public function testSettingValidEncodingShouldNotThrowExceptions(string $encoding): void
     {
         $escaper = new Escaper($encoding);
@@ -92,7 +93,7 @@ class EscaperTest extends TestCase
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
-    public function htmlSpecialCharsProvider(): array
+    public static function htmlSpecialCharsProvider(): array
     {
         return [
             '\'' => ['\'', '&#039;'],
@@ -103,16 +104,14 @@ class EscaperTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider htmlSpecialCharsProvider
-     */
+    #[DataProvider('htmlSpecialCharsProvider')]
     public function testHtmlEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
         self::assertEquals($encoded, $this->escaper->escapeHtml($string), 'Failed to escape: ' . $string);
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
-    public function htmlAttrSpecialCharsProvider(): array
+    public static function htmlAttrSpecialCharsProvider(): array
     {
         return [
             '\'' => ['\'', '&#x27;'],
@@ -152,16 +151,14 @@ class EscaperTest extends TestCase
          */
     }
 
-    /**
-     * @dataProvider htmlAttrSpecialCharsProvider
-     */
+    #[DataProvider('htmlAttrSpecialCharsProvider')]
     public function testHtmlAttributeEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
         self::assertEquals($encoded, $this->escaper->escapeHtmlAttr($string), 'Failed to escape: ' . $string);
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
-    public function jsSpecialCharsProvider(): array
+    public static function jsSpecialCharsProvider(): array
     {
         return [
             /* HTML special chars - escape without exception to hex */
@@ -195,9 +192,7 @@ class EscaperTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider jsSpecialCharsProvider
-     */
+    #[DataProvider('jsSpecialCharsProvider')]
     public function testJavascriptEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
         self::assertEquals($encoded, $this->escaper->escapeJs($string), 'Failed to escape: ' . $string);
@@ -214,7 +209,7 @@ class EscaperTest extends TestCase
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
-    public function cssSpecialCharsProvider(): array
+    public static function cssSpecialCharsProvider(): array
     {
         return [
             /* HTML special chars - escape without exception to hex */
@@ -248,9 +243,7 @@ class EscaperTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider cssSpecialCharsProvider
-     */
+    #[DataProvider('cssSpecialCharsProvider')]
     public function testCssEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
         self::assertEquals($encoded, $this->escaper->escapeCss($string), 'Failed to escape: ' . $string);
@@ -267,7 +260,7 @@ class EscaperTest extends TestCase
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
-    public function urlSpecialCharsProvider(): array
+    public static function urlSpecialCharsProvider(): array
     {
         return [
             /* HTML special chars - escape without exception to percent encoding */
@@ -305,9 +298,7 @@ class EscaperTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider urlSpecialCharsProvider
-     */
+    #[DataProvider('urlSpecialCharsProvider')]
     public function testUrlEscapingConvertsSpecialChars(string $string, string $encoded): void
     {
         self::assertEquals($encoded, $this->escaper->escapeUrl($string), 'Failed to escape: ' . $string);
@@ -363,7 +354,7 @@ class EscaperTest extends TestCase
     }
 
     /** @return Generator<int, array{0: int, 1: string}> */
-    public function owaspJSRecommendedEscapeRangeProvider(): Generator
+    public static function owaspJSRecommendedEscapeRangeProvider(): Generator
     {
         $immune = [',', '.', '_']; // Exceptions to escaping ranges
         for ($chr = 0; $chr < 0xFF; $chr++) {
@@ -386,9 +377,7 @@ class EscaperTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider owaspJSRecommendedEscapeRangeProvider
-     */
+    #[DataProvider('owaspJSRecommendedEscapeRangeProvider')]
     public function testJavascriptEscapingEscapesOwaspRecommendedRanges(int $codepoint, string $assertion): void
     {
         $literal = self::codepointToUtf8($codepoint);
@@ -423,7 +412,7 @@ class EscaperTest extends TestCase
     }
 
     /** @return array<int, array{0: int, 1: string}> */
-    public function owaspCSSRecommendedEscapeRangeProvider(): array
+    public static function owaspCSSRecommendedEscapeRangeProvider(): array
     {
         $providerData = [];
 
@@ -443,9 +432,7 @@ class EscaperTest extends TestCase
         return $providerData;
     }
 
-    /**
-     * @dataProvider owaspCSSRecommendedEscapeRangeProvider
-     */
+    #[DataProvider('owaspCSSRecommendedEscapeRangeProvider')]
     public function testCssEscapingEscapesOwaspRecommendedRanges(int $codePoint, string $assertion): void
     {
         $literal = self::codepointToUtf8($codePoint);
