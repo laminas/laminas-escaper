@@ -8,7 +8,7 @@
 /composer-require-checker.json export-ignore
 /renovate.json export-ignore
 /.gitattributes export-ignore
-/infection.json.dist export-ignore
+/.mutation-tests.json export-ignore
 /phpcs.xml.dist export-ignore
 /phpunit.xml.dist export-ignore
 /psalm.xml export-ignore

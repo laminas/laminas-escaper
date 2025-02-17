@@ -30,3 +30,17 @@ jobs:
       - run: composer global config bin-dir /usr/local/bin
       - run: composer global require -W maglnet/composer-require-checker
       - run: /usr/local/bin/composer-require-checker check
+
+  infection:
+    name: "Mutation Tests"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: shivammathur/setup-php@2.32.0
+        with:
+          php-version: ${{ env.default_php }}
+          extensions: ${{ env.php_extensions }}
+          coverage: xdebug
+          ini-values: xdebug.mode=coverage
+      - uses: ramsey/composer-install@3.0.0
+      - run: vendor/bin/infection --configuration=.mutation-tests.json
