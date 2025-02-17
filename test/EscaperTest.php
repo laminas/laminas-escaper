@@ -8,16 +8,18 @@ use Exception;
 use Generator;
 use Laminas\Escaper\Escaper;
 use Laminas\Escaper\Exception\InvalidArgumentException;
+use Override;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function chr;
 use function in_array;
 
-class EscaperTest extends TestCase
+final class EscaperTest extends TestCase
 {
     private Escaper $escaper;
 
+    #[Override]
     protected function setUp(): void
     {
         $this->escaper = new Escaper('UTF-8');
