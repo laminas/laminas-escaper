@@ -5585,16 +5585,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v6.4.15",
+            "version": "v6.4.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "3cb242f059c14ae08591c5c4087d1fe443564392"
+                "reference": "7a1c12e87b08ec9c97abdd188c9b3f5a40e37fc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/3cb242f059c14ae08591c5c4087d1fe443564392",
-                "reference": "3cb242f059c14ae08591c5c4087d1fe443564392",
+                "url": "https://api.github.com/repos/symfony/process/zipball/7a1c12e87b08ec9c97abdd188c9b3f5a40e37fc3",
+                "reference": "7a1c12e87b08ec9c97abdd188c9b3f5a40e37fc3",
                 "shasum": ""
             },
             "require": {
@@ -5626,7 +5626,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v6.4.15"
+                "source": "https://github.com/symfony/process/tree/v6.4.19"
             },
             "funding": [
                 {
@@ -5642,7 +5642,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-06T14:19:14+00:00"
+            "time": "2025-02-04T13:35:48+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -6004,16 +6004,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "6.8.6",
+            "version": "6.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "34ba9e1e5ea2e7396d3e2e644ee3e3a1d4336603"
+                "reference": "1361cd33008feb3ae2b4a93f1860e14e538ec8c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/34ba9e1e5ea2e7396d3e2e644ee3e3a1d4336603",
-                "reference": "34ba9e1e5ea2e7396d3e2e644ee3e3a1d4336603",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/1361cd33008feb3ae2b4a93f1860e14e538ec8c2",
+                "reference": "1361cd33008feb3ae2b4a93f1860e14e538ec8c2",
                 "shasum": ""
             },
             "require": {
@@ -6118,7 +6118,7 @@
                 "issues": "https://github.com/vimeo/psalm/issues",
                 "source": "https://github.com/vimeo/psalm"
             },
-            "time": "2025-02-21T10:03:22+00:00"
+            "time": "2025-02-25T17:34:39+00:00"
         },
         {
             "name": "webimpress/coding-standard",
