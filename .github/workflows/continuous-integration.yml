@@ -26,7 +26,7 @@ jobs:
           php-version: ${{ env.default_php }}
           ini-values: memory_limit=-1
           extensions: ${{ env.php_extensions }}
-      - uses: ramsey/composer-install@3.0.0
+      - uses: ramsey/composer-install@3.1.0
       - run: composer global config bin-dir /usr/local/bin
       - run: composer global require -W maglnet/composer-require-checker
       - run: /usr/local/bin/composer-require-checker check
@@ -42,5 +42,5 @@ jobs:
           extensions: ${{ env.php_extensions }}
           coverage: xdebug
           ini-values: xdebug.mode=coverage
-      - uses: ramsey/composer-install@3.0.0
+      - uses: ramsey/composer-install@3.1.0
       - run: vendor/bin/infection --configuration=.mutation-tests.json
