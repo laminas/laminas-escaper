@@ -3295,16 +3295,16 @@
         },
         {
             "name": "psalm/plugin-phpunit",
-            "version": "0.19.2",
+            "version": "0.19.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/psalm-plugin-phpunit.git",
-                "reference": "7b7a5cde988f83ccdbdf3ebaecd88192e01c5eb1"
+                "reference": "07dbf9fec23a694f2c095d8e2d44ccd6992afe38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-phpunit/zipball/7b7a5cde988f83ccdbdf3ebaecd88192e01c5eb1",
-                "reference": "7b7a5cde988f83ccdbdf3ebaecd88192e01c5eb1",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-phpunit/zipball/07dbf9fec23a694f2c095d8e2d44ccd6992afe38",
+                "reference": "07dbf9fec23a694f2c095d8e2d44ccd6992afe38",
                 "shasum": ""
             },
             "require": {
@@ -3312,12 +3312,13 @@
                 "composer/semver": "^1.4 || ^2.0 || ^3.0",
                 "ext-simplexml": "*",
                 "php": ">=8.1",
-                "vimeo/psalm": "dev-master || ^6"
+                "vimeo/psalm": "dev-master || ^6 || ^7"
             },
             "conflict": {
                 "phpunit/phpunit": "<7.5"
             },
             "require-dev": {
+                "behat/gherkin": "~4.11.0",
                 "codeception/codeception": "^4.0.3",
                 "php": "^7.3 || ^8.0",
                 "phpunit/phpunit": "^7.5 || ^8.0 || ^9.0",
@@ -3349,9 +3350,9 @@
             "description": "Psalm plugin for PHPUnit",
             "support": {
                 "issues": "https://github.com/psalm/psalm-plugin-phpunit/issues",
-                "source": "https://github.com/psalm/psalm-plugin-phpunit/tree/0.19.2"
+                "source": "https://github.com/psalm/psalm-plugin-phpunit/tree/0.19.3"
             },
-            "time": "2025-01-26T11:39:17+00:00"
+            "time": "2025-03-20T11:21:58+00:00"
         },
         {
             "name": "psr/container",
@@ -4683,16 +4684,16 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "8.16.0",
+            "version": "8.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "7748a4282df19daf966fda1d8c60a8aec803c83a"
+                "reference": "490023f23813483b5f75381c4ee07d26d9edced1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/7748a4282df19daf966fda1d8c60a8aec803c83a",
-                "reference": "7748a4282df19daf966fda1d8c60a8aec803c83a",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/490023f23813483b5f75381c4ee07d26d9edced1",
+                "reference": "490023f23813483b5f75381c4ee07d26d9edced1",
                 "shasum": ""
             },
             "require": {
@@ -4732,7 +4733,7 @@
             ],
             "support": {
                 "issues": "https://github.com/slevomat/coding-standard/issues",
-                "source": "https://github.com/slevomat/coding-standard/tree/8.16.0"
+                "source": "https://github.com/slevomat/coding-standard/tree/8.16.1"
             },
             "funding": [
                 {
@@ -4744,7 +4745,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-02-23T18:12:49+00:00"
+            "time": "2025-03-23T16:33:42+00:00"
         },
         {
             "name": "spatie/array-to-xml",
@@ -4816,16 +4817,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.11.3",
+            "version": "3.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10"
+                "reference": "2d1b63db139c3c6ea0c927698e5160f8b3b8d630"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10",
-                "reference": "ba05f990e79cbe69b9f35c8c1ac8dca7eecc3a10",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/2d1b63db139c3c6ea0c927698e5160f8b3b8d630",
+                "reference": "2d1b63db139c3c6ea0c927698e5160f8b3b8d630",
                 "shasum": ""
             },
             "require": {
@@ -4892,11 +4893,11 @@
                     "type": "open_collective"
                 },
                 {
-                    "url": "https://thanks.dev/phpcsstandards",
+                    "url": "https://thanks.dev/u/gh/phpcsstandards",
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-01-23T17:04:15+00:00"
+            "time": "2025-03-18T05:04:51+00:00"
         },
         {
             "name": "symfony/console",
@@ -6004,16 +6005,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "6.9.1",
+            "version": "6.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "17267f458584ed554ab6d6664c30475852be0611"
+                "reference": "e052de4275fb6cdbfedfef1d883a7e90732ea609"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/17267f458584ed554ab6d6664c30475852be0611",
-                "reference": "17267f458584ed554ab6d6664c30475852be0611",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/e052de4275fb6cdbfedfef1d883a7e90732ea609",
+                "reference": "e052de4275fb6cdbfedfef1d883a7e90732ea609",
                 "shasum": ""
             },
             "require": {
@@ -6118,7 +6119,7 @@
                 "issues": "https://github.com/vimeo/psalm/issues",
                 "source": "https://github.com/vimeo/psalm"
             },
-            "time": "2025-03-16T22:15:27+00:00"
+            "time": "2025-03-20T13:21:28+00:00"
         },
         {
             "name": "webimpress/coding-standard",
