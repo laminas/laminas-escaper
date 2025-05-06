@@ -10,13 +10,6 @@ namespace Laminas\Escaper;
 interface EscaperInterface
 {
     /**
-     * Return the encoding that all output/input is expected to be encoded in.
-     *
-     * @return non-empty-string
-     */
-    public function getEncoding();
-
-    /**
      * Escape a string for the HTML Body context where there are very few characters
      * of special meaning. Internally this will use htmlspecialchars().
      *
