@@ -28,6 +28,14 @@
                 <directory name="src" />
             </errorLevel>
         </ClassMustBeFinal>
+
+        <!-- Ignore missing #[Override] -->
+        <MissingOverrideAttribute>
+            <errorLevel type="suppress">
+                <directory name="src" />
+                <directory name="test" />
+            </errorLevel>
+        </MissingOverrideAttribute>
     </issueHandlers>
 
     <plugins>
