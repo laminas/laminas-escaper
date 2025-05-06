@@ -30,7 +30,7 @@ use const ENT_SUBSTITUTE;
  *
  * @final
  */
-class Escaper
+class Escaper implements EscaperInterface
 {
     /**
      * Entity Map mapping Unicode codepoints to any available named HTML entities.
