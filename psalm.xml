@@ -18,11 +18,6 @@
     </projectFiles>
 
     <issueHandlers>
-        <PossiblyUnusedMethod>
-            <errorLevel type="suppress">
-                <directory name="test" />
-            </errorLevel>
-        </PossiblyUnusedMethod>
         <ClassMustBeFinal>
             <errorLevel type="suppress">
                 <directory name="src" />
