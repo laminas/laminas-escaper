@@ -173,11 +173,7 @@ class Escaper implements EscaperInterface
             fn(array $matches): string => $this->cssMatcher($matches);
     }
 
-    /**
-     * Return the encoding that all output/input is expected to be encoded in.
-     *
-     * @return non-empty-string
-     */
+    /** @inheritDoc */
     public function getEncoding()
     {
         return $this->encoding;
