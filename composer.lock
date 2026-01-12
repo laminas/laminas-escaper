@@ -1698,16 +1698,16 @@
         },
         {
             "name": "infection/infection",
-            "version": "0.32.0",
+            "version": "0.32.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/infection/infection",
-                "reference": "71d4a12cbe62d79c06dce628b8a5fe234636424c"
+                "url": "https://github.com/infection/infection.git",
+                "reference": "df90353784ab0505f07502770f59f8fabef24d8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/infection/infection/zipball/71d4a12cbe62d79c06dce628b8a5fe234636424c",
-                "reference": "71d4a12cbe62d79c06dce628b8a5fe234636424c",
+                "url": "https://api.github.com/repos/infection/infection/zipball/df90353784ab0505f07502770f59f8fabef24d8c",
+                "reference": "df90353784ab0505f07502770f59f8fabef24d8c",
                 "shasum": ""
             },
             "require": {
@@ -1817,9 +1817,20 @@
                 "unit testing"
             ],
             "support": {
-                "issues": "https://github.com/infection/infection/issues"
+                "issues": "https://github.com/infection/infection/issues",
+                "source": "https://github.com/infection/infection/tree/0.32.2"
             },
-            "time": "2025-12-24T13:55:03+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/infection",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/infection",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2026-01-07T13:28:58+00:00"
         },
         {
             "name": "infection/mutator",
@@ -3939,16 +3950,16 @@
         },
         {
             "name": "sanmai/pipeline",
-            "version": "7.6",
+            "version": "7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sanmai/pipeline.git",
-                "reference": "f7aeb6e1c9572f366c6035c79d715a2a73eeb1c9"
+                "reference": "9341ac243258ff16259b0edc6654af5583fa8743"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sanmai/pipeline/zipball/f7aeb6e1c9572f366c6035c79d715a2a73eeb1c9",
-                "reference": "f7aeb6e1c9572f366c6035c79d715a2a73eeb1c9",
+                "url": "https://api.github.com/repos/sanmai/pipeline/zipball/9341ac243258ff16259b0edc6654af5583fa8743",
+                "reference": "9341ac243258ff16259b0edc6654af5583fa8743",
                 "shasum": ""
             },
             "require": {
@@ -3971,7 +3982,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "v6.x-dev"
+                    "dev-main": "7.x-dev"
                 }
             },
             "autoload": {
@@ -3995,7 +4006,7 @@
             "description": "General-purpose collections pipeline",
             "support": {
                 "issues": "https://github.com/sanmai/pipeline/issues",
-                "source": "https://github.com/sanmai/pipeline/tree/7.6"
+                "source": "https://github.com/sanmai/pipeline/tree/7.7"
             },
             "funding": [
                 {
@@ -4003,7 +4014,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-20T07:22:08+00:00"
+            "time": "2026-01-09T10:16:17+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -6660,16 +6671,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "2.0.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/assert.git",
-                "reference": "1b34b004e35a164bc5bb6ebd33c844b2d8069a54"
+                "reference": "bdbabc199a7ba9965484e4725d66170e5711323b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/1b34b004e35a164bc5bb6ebd33c844b2d8069a54",
-                "reference": "1b34b004e35a164bc5bb6ebd33c844b2d8069a54",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bdbabc199a7ba9965484e4725d66170e5711323b",
+                "reference": "bdbabc199a7ba9965484e4725d66170e5711323b",
                 "shasum": ""
             },
             "require": {
@@ -6716,9 +6727,9 @@
             ],
             "support": {
                 "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/2.0.0"
+                "source": "https://github.com/webmozarts/assert/tree/2.1.1"
             },
-            "time": "2025-12-16T21:36:00+00:00"
+            "time": "2026-01-08T11:28:40+00:00"
         }
     ],
     "aliases": [],
