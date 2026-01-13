@@ -191,7 +191,7 @@ class Escaper implements EscaperInterface
             return $string;
         }
 
-        $result = preg_replace_callback('/[^a-z0-9,\.\-_]/iSu', $this->htmlAttrMatcher, $string);
+        $result = preg_replace_callback('/[^a-z0-9,\.\-_]/iu', $this->htmlAttrMatcher, $string);
         assert(is_string($result));
 
         return $this->fromUtf8($result);
@@ -205,7 +205,7 @@ class Escaper implements EscaperInterface
             return $string;
         }
 
-        $result = preg_replace_callback('/[^a-z0-9,\._]/iSu', $this->jsMatcher, $string);
+        $result = preg_replace_callback('/[^a-z0-9,\._]/iu', $this->jsMatcher, $string);
         assert(is_string($result));
 
         return $this->fromUtf8($result);
@@ -225,7 +225,7 @@ class Escaper implements EscaperInterface
             return $string;
         }
 
-        $result = preg_replace_callback('/[^a-z0-9]/iSu', $this->cssMatcher, $string);
+        $result = preg_replace_callback('/[^a-z0-9]/iu', $this->cssMatcher, $string);
         assert(is_string($result));
 
         return $this->fromUtf8($result);
