@@ -162,15 +162,9 @@ class Escaper implements EscaperInterface
         $this->htmlSpecialCharsFlags = ENT_QUOTES | ENT_SUBSTITUTE;
 
         // set matcher callbacks
-        $this->htmlAttrMatcher =
-            /** @param array<array-key, string> $matches */
-            fn(array $matches): string => $this->htmlAttrMatcher($matches);
-        $this->jsMatcher       =
-            /** @param array<array-key, string> $matches */
-            fn(array $matches): string => $this->jsMatcher($matches);
-        $this->cssMatcher      =
-            /** @param array<array-key, string> $matches */
-            fn(array $matches): string => $this->cssMatcher($matches);
+        $this->htmlAttrMatcher = $this->htmlAttrMatcher(...);
+        $this->jsMatcher       = $this->jsMatcher(...);
+        $this->cssMatcher      = $this->cssMatcher(...);
     }
 
     /**
