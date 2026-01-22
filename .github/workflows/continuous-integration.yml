@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6.0.1
+      - uses: actions/checkout@v6.0.2
       - uses: shivammathur/setup-php@2.36.0
 
         with:
@@ -35,7 +35,7 @@ jobs:
     name: "Mutation Tests"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.1
+      - uses: actions/checkout@v6.0.2
       - uses: shivammathur/setup-php@2.36.0
         with:
           php-version: ${{ env.default_php }}
