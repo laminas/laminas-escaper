@@ -19,14 +19,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7.0.0
-      - uses: shivammathur/setup-php@2.37.1
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc # 2.37.1
 
         with:
           php-version: ${{ env.default_php }}
           ini-values: memory_limit=-1
           extensions: ${{ env.php_extensions }}
-      - uses: ramsey/composer-install@4.0.0
+      - uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
       - run: composer global config bin-dir /usr/local/bin
       - run: composer global require -W maglnet/composer-require-checker
       - run: /usr/local/bin/composer-require-checker check
@@ -35,12 +35,12 @@ jobs:
     name: "Mutation Tests"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7.0.0
-      - uses: shivammathur/setup-php@2.37.1
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc # 2.37.1
         with:
           php-version: ${{ env.default_php }}
           extensions: ${{ env.php_extensions }}
           coverage: xdebug
           ini-values: xdebug.mode=coverage
-      - uses: ramsey/composer-install@4.0.0
+      - uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
       - run: vendor/bin/infection --configuration=.mutation-tests.json
