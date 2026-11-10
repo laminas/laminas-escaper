@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47d1cea88c48a1709e3665d557490908",
+    "content-hash": "21c5f76ca4b969179b3915a223353771",
     "packages": [],
     "packages-dev": [
         {
@@ -1730,16 +1730,16 @@
         },
         {
             "name": "infection/infection",
-            "version": "0.32.6",
+            "version": "0.35.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/infection/infection.git",
-                "reference": "4ed769947eaf2ecf42203027301bad2bedf037e5"
+                "reference": "c93d29a806a2c1575487858db5b77657225b82ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/infection/infection/zipball/4ed769947eaf2ecf42203027301bad2bedf037e5",
-                "reference": "4ed769947eaf2ecf42203027301bad2bedf037e5",
+                "url": "https://api.github.com/repos/infection/infection/zipball/c93d29a806a2c1575487858db5b77657225b82ae",
+                "reference": "c93d29a806a2c1575487858db5b77657225b82ae",
                 "shasum": ""
             },
             "require": {
@@ -1750,49 +1750,53 @@
                 "ext-json": "*",
                 "ext-libxml": "*",
                 "ext-mbstring": "*",
-                "fidry/cpu-core-counter": "^1.0",
+                "fidry/cpu-core-counter": "^1.4",
                 "infection/abstract-testframework-adapter": "^0.5.0",
                 "infection/extension-installer": "^0.1.0",
-                "infection/include-interceptor": "^0.2.5",
+                "infection/include-interceptor": "^0.2.5 || ^1.0.0",
                 "infection/mutator": "^0.4",
                 "justinrainbow/json-schema": "^6.0",
                 "nikic/php-parser": "^5.6.2",
                 "ondram/ci-detector": "^4.1.0",
-                "php": "^8.2",
+                "php": "^8.3",
                 "psr/log": "^2.0 || ^3.0",
-                "sanmai/di-container": "^0.1.12",
+                "sanmai/di-container": "^0.1.23 || ^0.2",
                 "sanmai/duoclock": "^0.1.0",
                 "sanmai/later": "^0.1.7",
                 "sanmai/pipeline": "^7.2",
-                "sebastian/diff": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0",
-                "symfony/console": "^6.4 || ^7.0 || ^8.0",
-                "symfony/filesystem": "^6.4 || ^7.0 || ^8.0",
-                "symfony/finder": "^6.4 || ^7.0 || ^8.0",
+                "sebastian/diff": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "symfony/console": "^6.4 || ^7.4 || ^8.0",
+                "symfony/filesystem": "^6.4 || ^7.4 || ^8.0",
+                "symfony/finder": "^6.4 || ^7.4 || ^8.0",
                 "symfony/polyfill-php85": "^1.33",
-                "symfony/process": "^6.4 || ^7.0 || ^8.0",
-                "thecodingmachine/safe": "^v3.0",
+                "symfony/process": "^6.4 || ^7.4 || ^8.0",
+                "thecodingmachine/safe": "^v3.4",
                 "webmozart/assert": "^1.11 || ^2.0"
             },
             "conflict": {
                 "antecedent/patchwork": "<2.1.25",
-                "dg/bypass-finals": "<1.4.1"
+                "dg/bypass-finals": "<1.4.1",
+                "marc-mabe/php-enum": "<4.4"
             },
             "require-dev": {
+                "carthage-software/mago": "^1.20",
                 "ext-simplexml": "*",
                 "fidry/makefile": "^1.0",
                 "fig/log-test": "^1.2",
+                "phpat/phpat": "^0.12.4",
                 "phpbench/phpbench": "^1.4",
                 "phpstan/extension-installer": "^1.4",
                 "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
                 "phpstan/phpstan-phpunit": "^2.0",
                 "phpstan/phpstan-strict-rules": "^2.0",
                 "phpstan/phpstan-webmozart-assert": "^2.0",
-                "phpunit/phpunit": "^11.5.27",
+                "phpunit/phpunit": "^12.5.29",
                 "rector/rector": "^2.2.4",
-                "shipmonk/dead-code-detector": "^0.14.0",
+                "shipmonk/dead-code-detector": "^1.3",
                 "shipmonk/name-collision-detector": "^2.1",
                 "sidz/phpstan-rules": "^0.5.1",
-                "symfony/yaml": "^6.4 || ^7.0 || ^8.0",
+                "symfony/yaml": "^6.4 || ^7.4 || ^8.0",
                 "thecodingmachine/phpstan-safe-rule": "^1.4",
                 "webmozarts/strict-phpunit": "^7.15"
             },
@@ -1850,7 +1854,7 @@
             ],
             "support": {
                 "issues": "https://github.com/infection/infection/issues",
-                "source": "https://github.com/infection/infection/tree/0.32.6"
+                "source": "https://github.com/infection/infection/tree/0.35.10"
             },
             "funding": [
                 {
@@ -1862,8 +1866,8 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2026-02-26T14:34:26+00:00",
-            "published-time": "2026-02-26T14:36:05+00:00"
+            "time": "2026-11-05T10:06:41+00:00",
+            "published-time": "2026-11-08T18:06:24+00:00"
         },
         {
             "name": "infection/mutator",
@@ -3408,33 +3412,31 @@
         },
         {
             "name": "psalm/plugin-phpunit",
-            "version": "0.19.7",
+            "version": "0.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/psalm-plugin-phpunit.git",
-                "reference": "143f9d5e049fffcdbc0da3fbb99f6149f9d3e2dc"
+                "reference": "6e5ca7dd019e502f24824c138cb54fc8f485d2e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-phpunit/zipball/143f9d5e049fffcdbc0da3fbb99f6149f9d3e2dc",
-                "reference": "143f9d5e049fffcdbc0da3fbb99f6149f9d3e2dc",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-phpunit/zipball/6e5ca7dd019e502f24824c138cb54fc8f485d2e2",
+                "reference": "6e5ca7dd019e502f24824c138cb54fc8f485d2e2",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
                 "php": ">=8.1",
-                "vimeo/psalm": "dev-master || ^6.10.0"
+                "vimeo/psalm": "^6 || ^7.2 || dev-master"
             },
             "conflict": {
                 "phpspec/prophecy": "<1.20.0",
-                "phpspec/prophecy-phpunit": "<2.3.0",
-                "phpunit/phpunit": "<8.5.1"
+                "phpspec/prophecy-phpunit": "<2.3.0"
             },
             "require-dev": {
-                "php": "^7.3 || ^8.0",
-                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
-                "squizlabs/php_codesniffer": "^3.3.1",
-                "weirdan/prophecy-shim": "^1.0 || ^2.0"
+                "phpspec/prophecy-phpunit": "^2.3",
+                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+                "squizlabs/php_codesniffer": "^3.3.1"
             },
             "type": "psalm-plugin",
             "extra": {
@@ -3460,10 +3462,10 @@
             "description": "Psalm plugin for PHPUnit",
             "support": {
                 "issues": "https://github.com/psalm/psalm-plugin-phpunit/issues",
-                "source": "https://github.com/psalm/psalm-plugin-phpunit/tree/0.19.7"
+                "source": "https://github.com/psalm/psalm-plugin-phpunit/tree/0.22.2"
             },
-            "time": "2025-03-31T18:49:55+00:00",
-            "published-time": "2026-04-15T15:23:09+00:00"
+            "time": "2026-11-09T20:48:04+00:00",
+            "published-time": "2026-11-09T20:55:42+00:00"
         },
         {
             "name": "psr/clock",
